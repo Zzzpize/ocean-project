@@ -9,6 +9,7 @@ add_executable(OceanSimulation
     src/algae.cpp
     src/herbivore.cpp
     src/predator.cpp
+    src/ocean.cpp
 )
 
 target_include_directories(OceanSimulation PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)
