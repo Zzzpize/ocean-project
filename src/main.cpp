@@ -5,6 +5,7 @@
 #include <thread>  
 #include <cstdlib> 
 #include <limits> 
+#include <string>
 
 #include "ocean.hpp"
 #include "algae.hpp"
@@ -12,6 +13,7 @@
 #include "predator.hpp"
 #include "utils/random.hpp" 
 #include "utils/logger.hpp" 
+#include "utils/resource_wrapper.hpp" 
 
 class LoggerInitializer {
 public:
@@ -25,10 +27,61 @@ public:
     }
 };
 
+void RuleOfFive() {
+
+    std::cout << "\n1. Construction:\n";
+    ResourceWrapper r1("Hello");
+    r1.print("r1: ");
+    ResourceWrapper r2_empty; 
+    r2_empty.print("r2_empty: ");
+
+    std::cout << "\n2. Copy Construction:\n";
+    ResourceWrapper r3 = r1; 
+    r1.print("r1 (after r3=r1): "); 
+    r3.print("r3 (copy of r1): "); 
+
+    std::cout << "\n3. Copy Assignment:\n";
+    ResourceWrapper r2_assign("Original R2");
+    r2_assign.print("r2_assign (before assignment): ");
+    r2_assign = r1;
+    r1.print("r1 (after r2_assign=r1): "); 
+    r2_assign.print("r2_assign (now copy of r1): "); 
+
+    std::cout << "\n4. Move Construction:\n";
+    ResourceWrapper r4 = std::move(r1); 
+    r1.print("r1 (after move to r4): "); 
+    r4.print("r4 (moved from r1): "); 
+
+    std::cout << "\n5. Move Assignment:\n";
+    ResourceWrapper r5("Original R5");
+    r5.print("r5 (before assignment): ");
+    r5 = std::move(r3); 
+    r3.print("r3 (after move to r5): ");
+    r5.print("r5 (moved from r3): "); 
+    
+    std::cout << "\n6. Self-assignment check (copy):\n";
+    ResourceWrapper r_self_copy("SelfCopyTest");
+    r_self_copy.print("r_self_copy (before): ");
+    r_self_copy = r_self_copy; 
+    r_self_copy.print("r_self_copy (after self-copy): ");
+
+    std::cout << "\n7. Self-assignment check (move):\n";
+    ResourceWrapper r_self_move("SelfMoveTest");
+    r_self_move.print("r_self_move (before): ");
+    r_self_move = std::move(r_self_move); 
+    r_self_move.print("r_self_move (after self-move): ");
+
+    std::cout << "\n--- End of Rule of Five Demonstration (scopes ending) ---\n";
+}
+
 int main() {
     LoggerInitializer logger_guard; 
-
     Logger::info("Simulation starting...");
+
+    RuleOfFive(); 
+
+    std::cout << "\nPress Enter to start ocean simulation...\n";
+    std::cin.get();
 
     try {
         Ocean myOcean(15, 30); 
@@ -55,7 +108,7 @@ int main() {
         Logger::info("Added ", initial_herb_count, " HerbivoreFish initially.");
 
         int initial_pred_count = 0;
-        for(int i=0; i < 3; ++i) { 
+        for(int i=0; i < 4; ++i) { 
             int r = Random::getInt(0, myOcean.getRows()-1);
             int c = Random::getInt(0, myOcean.getCols()-1);
             if(myOcean.addEntity(std::make_unique<PredatorFish>(), r, c)) {
@@ -64,14 +117,12 @@ int main() {
         }
         Logger::info("Added ", initial_pred_count, " PredatorFish initially.");
         
-        const int num_ticks = 200; 
+        const int num_ticks = 200;
         Logger::info("Starting simulation for ", num_ticks, " ticks.");
 
         for (int i = 0; i < num_ticks; ++i) {
             system("cls"); 
-            
             std::cout << "Tick: " << i + 1 << " / " << num_ticks << std::endl;
-            Logger::debug("Processing Tick: ", i + 1);
             
             myOcean.tick();    
             myOcean.display(); 
@@ -87,17 +138,10 @@ int main() {
                     if (e) {
                         total_entities++;
                         switch (e->getType()) {
-                            case EntityType::ALGAE:
-                                algae_count++;
-                                break;
-                            case EntityType::HERBIVORE:
-                                herb_count++;
-                                break;
-                            case EntityType::PREDATOR:
-                                pred_count++;
-                                break;
-                            default:
-                                break;
+                            case EntityType::ALGAE: algae_count++; break;
+                            case EntityType::HERBIVORE: herb_count++; break;
+                            case EntityType::PREDATOR: pred_count++; break;
+                            default: break;
                         }
                     }
                 }
@@ -106,8 +150,7 @@ int main() {
                       << ", Herbivores: " << herb_count 
                       << ", Predators: " << pred_count 
                       << " (Total: " << total_entities << ")" << std::endl;
-            Logger::info("Tick ", i+1, " Stats - Algae: ", algae_count, ", Herbivores: ", herb_count, ", Predators: ", pred_count);
-
+            
             std::this_thread::sleep_for(std::chrono::milliseconds(1000)); 
         }
         Logger::info("Simulation finished after ", num_ticks, " ticks.");
