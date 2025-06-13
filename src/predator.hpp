@@ -1,5 +1,15 @@
 #pragma once
 #include "entity.hpp"
+#include "utils/random.hpp"
+
+
+namespace Config {
+    const int PREDATOR_INITIAL_ENERGY = 150;
+    const int PREDATOR_MAX_ENERGY = 300;
+    const int PREDATOR_MAX_AGE = 70; 
+    const int PREDATOR_ENERGY_PER_TICK = 3; 
+    const int PREDATOR_ENERGY_FROM_HERBIVORE = 50; 
+}
 
 class PredatorFish : public Entity {
 public:
@@ -10,4 +20,12 @@ public:
     char getSymbol() const override;
     EntityType getType() const override;
 
+    bool isDead() const override; 
+
+private:
+    int energy_;
+    int age_;
+
+    void move(Ocean& ocean, int current_r, int current_c);
+    bool eat(Ocean& ocean, int current_r, int current_c);
 };
