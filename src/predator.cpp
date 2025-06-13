@@ -1,12 +1,15 @@
 #include "predator.hpp"
 #include "ocean.hpp"
-#include "herbivore.hpp"
+#include "herbivore.hpp" 
 #include <iostream>
 #include <vector>
 #include <utility>
 
-PredatorFish::PredatorFish()
-    : energy_(Config::PREDATOR_INITIAL_ENERGY), age_(0) {
+PredatorFish::PredatorFish(int initial_energy)
+    : energy_(initial_energy), age_(0) {
+    if (energy_ > Config::PREDATOR_MAX_ENERGY) {
+        energy_ = Config::PREDATOR_MAX_ENERGY;
+    }
 }
 
 bool PredatorFish::isDead() const {
@@ -19,10 +22,33 @@ bool PredatorFish::isDead() const {
     return false;
 }
 
+void PredatorFish::reproduce(Ocean& ocean, int current_r, int current_c) {
+    if (energy_ >= Config::PREDATOR_REPRODUCTION_ENERGY_THRESHOLD &&
+        Random::getInt(1, 100) <= Config::PREDATOR_REPRODUCTION_CHANCE_PERCENT) {
+        
+        std::vector<std::pair<int, int>> emptyNeighbors = ocean.getEmptyAdjacentCells(current_r, current_c);
+        if (!emptyNeighbors.empty()) {
+            Random::shuffle(emptyNeighbors);
+            std::pair<int, int> offspringPos = emptyNeighbors[0];
+
+            auto offspring = std::make_unique<PredatorFish>(Config::PREDATOR_OFFSPRING_INITIAL_ENERGY);
+            
+            if (ocean.addEntity(std::move(offspring), offspringPos.first, offspringPos.second)) {
+                energy_ -= Config::PREDATOR_REPRODUCTION_COST;
+            }
+        }
+    }
+}
+
 void PredatorFish::update(Ocean& ocean, int r, int c) {
     age_++;
     energy_ -= Config::PREDATOR_ENERGY_PER_TICK;
 
+    if (isDead()) {
+        return;
+    }
+
+    reproduce(ocean, r, c);
 
     if (isDead()) {
         return;
@@ -31,7 +57,10 @@ void PredatorFish::update(Ocean& ocean, int r, int c) {
     if (eat(ocean, r, c)) {
         return;
     }
-
+    
+    if (isDead()) {
+        return;
+    }
     move(ocean, r, c);
 }
 
@@ -43,7 +72,7 @@ bool PredatorFish::eat(Ocean& ocean, int current_r, int current_c) {
         std::pair<int, int> herbivorePos = herbivoreNeighbors[0];
 
         std::unique_ptr<Entity> eatenHerbivore = ocean.removeEntity(herbivorePos.first, herbivorePos.second);
-        if (eatenHerbivore && eatenHerbivore->getType() == EntityType::HERBIVORE) {
+        if (eatenHerbivore && eatenHerbivore->getType() == EntityType::HERBIVORE) { 
             energy_ += Config::PREDATOR_ENERGY_FROM_HERBIVORE;
             if (energy_ > Config::PREDATOR_MAX_ENERGY) {
                 energy_ = Config::PREDATOR_MAX_ENERGY;
@@ -51,7 +80,6 @@ bool PredatorFish::eat(Ocean& ocean, int current_r, int current_c) {
 
             ocean.moveEntity(current_r, current_c, herbivorePos.first, herbivorePos.second);
             return true;
-        } else if (eatenHerbivore) {
         }
     }
     return false;
@@ -65,12 +93,11 @@ void PredatorFish::move(Ocean& ocean, int current_r, int current_c) {
         std::pair<int, int> targetCell = emptyNeighbors[0];
         
         ocean.moveEntity(current_r, current_c, targetCell.first, targetCell.second);
-    } else {
     }
 }
 
 char PredatorFish::getSymbol() const {
-    if (energy_ < Config::PREDATOR_INITIAL_ENERGY / 2) return 'p';
+    if (energy_ < Config::PREDATOR_INITIAL_ENERGY / 3) return 'p';
     return 'P';
 }
 
