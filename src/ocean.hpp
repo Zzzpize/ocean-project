@@ -1,18 +1,20 @@
 #pragma once
 
-#include <vector>
 #include <memory>
+#include <vector>
+#include <utility>
 #include "entity.hpp" 
-#include "utils/random.hpp"
 
 class Ocean {
 public:
     Ocean(int rows, int cols);
-    ~Ocean() = default;
+    ~Ocean(); 
+
     Ocean(const Ocean&) = delete;
     Ocean& operator=(const Ocean&) = delete;
-    Ocean(Ocean&&) noexcept = default;
-    Ocean& operator=(Ocean&&) noexcept = default;
+
+    Ocean(Ocean&& other) noexcept;
+    Ocean& operator=(Ocean&& other) noexcept;
 
     bool addEntity(std::unique_ptr<Entity> entity, int r, int c);
     Entity* getEntity(int r, int c) const;
@@ -28,12 +30,9 @@ public:
     bool isValidCoordinate(int r, int c) const;
     std::vector<std::pair<int, int>> getEmptyAdjacentCells(int r, int c) const;
     std::vector<std::pair<int, int>> getAdjacentCellsOfType(int r, int c, EntityType type) const;
-    
     std::pair<int, int> getDirectionToNearestTarget(int start_r, int start_c, EntityType target_type, int radius) const;
 
-
 private:
-    int rows_; 
-    int cols_;
-    std::vector<std::vector<std::unique_ptr<Entity>>> grid_;
+    class OceanImpl; 
+    std::unique_ptr<OceanImpl> pImpl_; 
 };

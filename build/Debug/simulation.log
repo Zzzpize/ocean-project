@@ -368,3 +368,126 @@
 2025-06-13 14:22:13 [INFO]  Tick 29 Stats - Algae: 0, Herbivores: 0, Predators: 1
 2025-06-13 14:22:14 [INFO]  Tick 30 Stats - Algae: 0, Herbivores: 0, Predators: 1
 2025-06-13 14:22:15 [INFO]  Tick 31 Stats - Algae: 0, Herbivores: 0, Predators: 1
+2025-06-13 14:52:46 [INFO]  Logger initialized. Logging to file: simulation.log
+2025-06-13 14:52:46 [INFO]  Logger initialized for console output.
+2025-06-13 14:52:46 [INFO]  Logger system initialized.
+2025-06-13 14:52:46 [INFO]  Simulation starting...
+2025-06-13 14:52:46 [INFO]  Ocean (PImpl) created with size 15x30.
+2025-06-13 14:52:46 [INFO]  Ocean created with size 15x30.
+2025-06-13 14:52:46 [INFO]  Added 39 Algae initially.
+2025-06-13 14:52:46 [INFO]  Added 10 HerbivoreFish initially.
+2025-06-13 14:52:46 [INFO]  Added 3 PredatorFish initially.
+2025-06-13 14:52:46 [INFO]  Starting simulation for 200 ticks.
+2025-06-13 14:52:46 [INFO]  H at (5,13) ate Algae. E:123
+2025-06-13 14:52:46 [INFO]  H at (7,14) ate Algae. E:123
+2025-06-13 14:52:46 [INFO]  H at (6,26) ate Algae. E:123
+2025-06-13 14:52:46 [INFO]  H at (4,12) ate Algae. E:123
+2025-06-13 14:52:46 [INFO]  H at (6,27) ate Algae. E:146
+2025-06-13 14:52:46 [INFO]  H at (14,28) ate Algae. E:123
+2025-06-13 14:52:46 [INFO]  Tick 1 Stats - Algae: 34, Herbivores: 10, Predators: 3
+2025-06-13 14:52:47 [INFO]  H at (4,6) ate Algae. E:121
+2025-06-13 14:52:47 [INFO]  H at (3,14) ate Algae. E:144
+2025-06-13 14:52:47 [INFO]  H at (4,15) ate Algae. E:167
+2025-06-13 14:52:47 [INFO]  Tick 2 Stats - Algae: 31, Herbivores: 10, Predators: 3
+2025-06-13 14:52:48 [INFO]  H at (7,29) ate Algae. E:167
+2025-06-13 14:52:48 [INFO]  H at (4,15) reproduced to (3,14). Parent E:95
+2025-06-13 14:52:48 [INFO]  H at (6,6) ate Algae. E:142
+2025-06-13 14:52:48 [INFO]  H at (7,29) reproduced to (6,29). Parent E:95
+2025-06-13 14:52:48 [INFO]  Tick 3 Stats - Algae: 29, Herbivores: 12, Predators: 3
+2025-06-13 14:52:49 [INFO]  H at (13,6) ate Algae. E:117
+2025-06-13 14:52:49 [INFO]  H at (7,6) ate Algae. E:165
+2025-06-13 14:52:49 [INFO]  Tick 4 Stats - Algae: 27, Herbivores: 12, Predators: 3
+2025-06-13 14:52:50 [INFO]  H at (14,5) ate Algae. E:140
+2025-06-13 14:52:50 [INFO]  Tick 5 Stats - Algae: 29, Herbivores: 12, Predators: 3
+2025-06-13 14:52:51 [INFO]  H at (0,12) ate Algae. E:99
+2025-06-13 14:52:51 [INFO]  H at (14,6) ate Algae. E:163
+2025-06-13 14:52:51 [INFO]  H at (8,26) ate Algae. E:99
+2025-06-13 14:52:51 [INFO]  Tick 6 Stats - Algae: 28, Herbivores: 12, Predators: 3
+2025-06-13 14:52:52 [INFO]  H at (4,22) ate Algae. E:111
+2025-06-13 14:52:52 [INFO]  H at (3,4) ate Algae. E:111
+2025-06-13 14:52:52 [INFO]  Tick 7 Stats - Algae: 29, Herbivores: 12, Predators: 3
+2025-06-13 14:52:53 [INFO]  H at (5,23) ate Algae. E:134
+2025-06-13 14:52:53 [INFO]  H at (6,23) ate Algae. E:157
+2025-06-13 14:52:53 [INFO]  H at (13,8) ate Algae. E:184
+2025-06-13 14:52:53 [INFO]  H at (14,9) ate Algae. E:200
+2025-06-13 14:52:53 [INFO]  H at (4,3) ate Algae. E:134
+2025-06-13 14:52:53 [INFO]  H at (6,22) ate Algae. E:180
+2025-06-13 14:52:53 [INFO]  Tick 8 Stats - Algae: 24, Herbivores: 12, Predators: 3
+2025-06-13 14:52:54 [INFO]  H at (6,25) ate Algae. E:108
+2025-06-13 14:52:54 [INFO]  H at (14,10) ate Algae. E:200
+2025-06-13 14:52:54 [INFO]  Tick 9 Stats - Algae: 24, Herbivores: 12, Predators: 3
+2025-06-13 14:52:56 [INFO]  H at (13,12) ate Algae. E:200
+2025-06-13 14:52:56 [INFO]  Tick 10 Stats - Algae: 23, Herbivores: 12, Predators: 3
+2025-06-13 14:52:57 [INFO]  H at (13,13) ate Algae. E:200
+2025-06-13 14:52:57 [INFO]  H at (9,24) ate Algae. E:197
+2025-06-13 14:52:57 [INFO]  Tick 11 Stats - Algae: 21, Herbivores: 12, Predators: 3
+2025-06-13 14:52:58 [INFO]  H at (14,13) ate Algae. E:200
+2025-06-13 14:52:58 [INFO]  H at (14,12) ate Algae. E:200
+2025-06-13 14:52:58 [INFO]  P at (5,5) ate Herbivore. E:162
+2025-06-13 14:52:58 [INFO]  Tick 12 Stats - Algae: 20, Herbivores: 11, Predators: 3
+2025-06-13 14:52:59 [INFO]  H at (4,19) ate Algae. E:110
+2025-06-13 14:52:59 [INFO]  H at (4,20) ate Algae. E:133
+2025-06-13 14:52:59 [INFO]  P at (9,24) ate Herbivore. E:158
+2025-06-13 14:52:59 [INFO]  Tick 13 Stats - Algae: 19, Herbivores: 10, Predators: 3
+2025-06-13 14:53:00 [INFO]  Tick 14 Stats - Algae: 20, Herbivores: 10, Predators: 3
+2025-06-13 14:53:01 [INFO]  P at (6,8) ate Herbivore. E:150
+2025-06-13 14:53:01 [INFO]  H at (7,19) ate Algae. E:96
+2025-06-13 14:53:01 [INFO]  Tick 15 Stats - Algae: 21, Herbivores: 9, Predators: 3
+2025-06-13 14:53:02 [INFO]  H at (8,18) ate Algae. E:119
+2025-06-13 14:53:02 [INFO]  Tick 16 Stats - Algae: 21, Herbivores: 9, Predators: 3
+2025-06-13 14:53:03 [INFO]  H at (8,17) ate Algae. E:142
+2025-06-13 14:53:03 [INFO]  P at (6,7) ate Herbivore. E:198
+2025-06-13 14:53:03 [INFO]  Tick 17 Stats - Algae: 21, Herbivores: 8, Predators: 3
+2025-06-13 14:53:04 [INFO]  H at (9,18) ate Algae. E:165
+2025-06-13 14:53:04 [INFO]  Tick 18 Stats - Algae: 22, Herbivores: 8, Predators: 3
+2025-06-13 14:53:05 [INFO]  H at (8,17) reproduced to (9,18). Parent E:91
+2025-06-13 14:53:05 [INFO]  Tick 19 Stats - Algae: 22, Herbivores: 9, Predators: 3
+2025-06-13 14:53:06 [INFO]  H at (2,28) ate Algae. E:109
+2025-06-13 14:53:06 [INFO]  H at (2,29) ate Algae. E:132
+2025-06-13 14:53:06 [INFO]  H at (12,18) ate Algae. E:108
+2025-06-13 14:53:06 [INFO]  Tick 20 Stats - Algae: 21, Herbivores: 9, Predators: 3
+2025-06-13 14:53:07 [INFO]  H at (11,19) ate Algae. E:101
+2025-06-13 14:53:07 [INFO]  H at (13,18) ate Algae. E:131
+2025-06-13 14:53:07 [INFO]  H at (12,19) ate Algae. E:154
+2025-06-13 14:53:07 [INFO]  Tick 21 Stats - Algae: 18, Herbivores: 9, Predators: 3
+2025-06-13 14:53:08 [INFO]  H at (10,21) ate Algae. E:110
+2025-06-13 14:53:08 [INFO]  Tick 22 Stats - Algae: 18, Herbivores: 9, Predators: 3
+2025-06-13 14:53:09 [INFO]  H at (11,22) ate Algae. E:133
+2025-06-13 14:53:09 [INFO]  Tick 23 Stats - Algae: 17, Herbivores: 9, Predators: 3
+2025-06-13 14:53:10 [INFO]  H at (12,22) ate Algae. E:156
+2025-06-13 14:53:10 [INFO]  Tick 24 Stats - Algae: 18, Herbivores: 9, Predators: 3
+2025-06-13 14:53:11 [INFO]  H at (13,11) reproduced to (14,10). Parent E:102
+2025-06-13 14:53:11 [INFO]  H at (12,21) ate Algae. E:179
+2025-06-13 14:53:11 [INFO]  Tick 25 Stats - Algae: 18, Herbivores: 10, Predators: 3
+2025-06-13 14:53:12 [INFO]  H at (13,22) ate Algae. E:200
+2025-06-13 14:53:12 [INFO]  H at (14,23) ate Algae. E:200
+2025-06-13 14:53:13 [INFO]  Tick 26 Stats - Algae: 18, Herbivores: 10, Predators: 3
+2025-06-13 14:53:14 [INFO]  H at (11,24) ate Algae. E:96
+2025-06-13 14:53:14 [INFO]  H at (13,24) ate Algae. E:200
+2025-06-13 14:53:14 [INFO]  H at (13,23) ate Algae. E:200
+2025-06-13 14:53:14 [INFO]  H at (14,8) ate Algae. E:101
+2025-06-13 14:53:14 [INFO]  Tick 27 Stats - Algae: 16, Herbivores: 10, Predators: 3
+2025-06-13 14:53:15 [INFO]  H at (11,23) ate Algae. E:110
+2025-06-13 14:53:15 [INFO]  H at (11,22) ate Algae. E:133
+2025-06-13 14:53:15 [INFO]  H at (12,23) ate Algae. E:119
+2025-06-13 14:53:15 [INFO]  H at (14,22) ate Algae. E:200
+2025-06-13 14:53:15 [INFO]  P at (11,23) ate Herbivore. E:158
+2025-06-13 14:53:15 [INFO]  H at (14,21) ate Algae. E:200
+2025-06-13 14:53:15 [INFO]  Tick 28 Stats - Algae: 11, Herbivores: 9, Predators: 3
+2025-06-13 14:53:16 [INFO]  H at (12,21) ate Algae. E:156
+2025-06-13 14:53:16 [INFO]  H at (13,21) ate Algae. E:200
+2025-06-13 14:53:16 [INFO]  H at (14,20) ate Algae. E:200
+2025-06-13 14:53:16 [INFO]  P at (13,9) ate Herbivore. E:154
+2025-06-13 14:53:16 [INFO]  Tick 29 Stats - Algae: 8, Herbivores: 8, Predators: 3
+2025-06-13 14:53:17 [INFO]  P at (12,25) ate Herbivore. E:210
+2025-06-13 14:53:17 [INFO]  P at (13,8) ate Herbivore. E:210
+2025-06-13 14:53:17 [INFO]  Tick 30 Stats - Algae: 10, Herbivores: 6, Predators: 3
+2025-06-13 14:53:18 [INFO]  H at (14,19) reproduced to (14,18). Parent E:126
+2025-06-13 14:53:18 [INFO]  Tick 31 Stats - Algae: 11, Herbivores: 7, Predators: 3
+2025-06-13 14:53:19 [INFO]  Tick 32 Stats - Algae: 11, Herbivores: 7, Predators: 3
+2025-06-13 14:53:20 [INFO]  Tick 33 Stats - Algae: 12, Herbivores: 7, Predators: 3
+2025-06-13 14:53:21 [INFO]  P at (13,22) ate Herbivore. E:250
+2025-06-13 14:53:21 [INFO]  Tick 34 Stats - Algae: 15, Herbivores: 6, Predators: 3
+2025-06-13 14:53:22 [INFO]  Tick 35 Stats - Algae: 16, Herbivores: 6, Predators: 3
+2025-06-13 14:53:23 [INFO]  Tick 36 Stats - Algae: 20, Herbivores: 6, Predators: 3
+2025-06-13 14:53:24 [INFO]  Tick 37 Stats - Algae: 21, Herbivores: 6, Predators: 3
