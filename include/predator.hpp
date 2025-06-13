@@ -3,19 +3,19 @@
 #include "utils/random.hpp"
 
 namespace Config {
-    const int PREDATOR_INITIAL_ENERGY = 150;
-    const int PREDATOR_MAX_ENERGY = 300;
-    const int PREDATOR_MAX_AGE = 70;      
-    const int PREDATOR_ENERGY_PER_TICK = 4;
-    const int PREDATOR_ENERGY_FROM_HERBIVORE = 60;
+    const int PREDATOR_INITIAL_ENERGY = 180;
+    const int PREDATOR_MAX_ENERGY = 350;
+    const int PREDATOR_MAX_AGE = 90;      
+    const int PREDATOR_ENERGY_PER_TICK = 3;
+    const int PREDATOR_ENERGY_FROM_HERBIVORE = 75;
     
-    const int PREDATOR_REPRODUCTION_ENERGY_THRESHOLD = 230; 
-    const int PREDATOR_REPRODUCTION_COST = 110;             
-    const int PREDATOR_OFFSPRING_INITIAL_ENERGY = 100;      
-    const int PREDATOR_REPRODUCTION_CHANCE_PERCENT = 15; 
+    const int PREDATOR_REPRODUCTION_ENERGY_THRESHOLD = 280; 
+    const int PREDATOR_REPRODUCTION_COST = 130;             
+    const int PREDATOR_OFFSPRING_INITIAL_ENERGY = 120;      
+    const int PREDATOR_REPRODUCTION_CHANCE_PERCENT = 10; 
 
-    const int PREDATOR_SIGHT_RADIUS = 5;
-    const int PREDATOR_CRITICAL_ENERGY_THRESHOLD = 75; 
+    const int PREDATOR_SIGHT_RADIUS = 6;
+    const int PREDATOR_CRITICAL_ENERGY_THRESHOLD = 90; 
 }
 
 class PredatorFish : public Entity {

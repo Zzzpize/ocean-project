@@ -1,41 +1,461 @@
-2025-06-13 16:43:25 [INFO]  Logger initialized. Logging to file: simulation.log
-2025-06-13 16:43:25 [INFO]  Logger initialized for console output.
-2025-06-13 16:43:25 [INFO]  Logger system initialized.
-2025-06-13 16:43:25 [INFO]  Simulation starting...
-2025-06-13 16:43:25 [INFO]  --- Demonstrating Rule of Five with ResourceWrapper ---
-2025-06-13 16:43:26 [INFO]  Ocean (PImpl) created with size 15x30.
-2025-06-13 16:43:26 [INFO]  Ocean created with size 15x30.
-2025-06-13 16:43:26 [INFO]  Added 39 Algae initially.
-2025-06-13 16:43:26 [INFO]  Added 9 HerbivoreFish initially.
-2025-06-13 16:43:26 [INFO]  Added 3 PredatorFish initially.
-2025-06-13 16:43:26 [INFO]  Starting simulation for 200 ticks.
-2025-06-13 16:43:26 [INFO]  H at (9,21) ate Algae. E:123
-2025-06-13 16:43:26 [INFO]  H at (7,12) ate Algae. E:123
-2025-06-13 16:43:26 [INFO]  H at (8,24) ate Algae. E:123
-2025-06-13 16:43:26 [INFO]  H at (8,25) ate Algae. E:146
-2025-06-13 16:43:26 [INFO]  H at (5,29) ate Algae. E:123
-2025-06-13 16:43:26 [INFO]  H at (5,5) ate Algae. E:123
-2025-06-13 16:43:26 [INFO]  H at (2,27) ate Algae. E:123
-2025-06-13 16:43:26 [INFO]  P at (8,22) ate Herbivore. E:206
-2025-06-13 16:43:27 [INFO]  H at (2,4) ate Algae. E:121
-2025-06-13 16:43:27 [INFO]  P at (2,27) ate Herbivore. E:202
-2025-06-13 16:43:28 [INFO]  H at (13,23) ate Algae. E:119
-2025-06-13 16:43:28 [INFO]  H at (14,24) ate Algae. E:142
-2025-06-13 16:43:28 [INFO]  H at (7,6) ate Algae. E:142
-2025-06-13 16:43:28 [INFO]  P at (7,23) ate Herbivore. E:258
-2025-06-13 16:43:29 [INFO]  H at (6,7) ate Algae. E:165
-2025-06-13 16:43:29 [INFO]  H at (0,5) ate Algae. E:140
-2025-06-13 16:43:29 [INFO]  P at (7,23) reproduced to (6,23). Parent E:144
-2025-06-13 16:43:30 [INFO]  H at (1,6) ate Algae. E:163
-2025-06-13 16:43:33 [INFO]  H at (12,26) ate Algae. E:159
-2025-06-13 16:43:34 [INFO]  P at (7,25) ate Herbivore. E:144
-2025-06-13 16:43:35 [INFO]  H at (1,9) ate Algae. E:180
-2025-06-13 16:43:35 [INFO]  H at (4,9) ate Algae. E:107
-2025-06-13 16:43:37 [INFO]  P at (8,3) ate Herbivore. E:166
-2025-06-13 16:43:38 [INFO]  H at (0,10) reproduced to (1,10). Parent E:102
-2025-06-13 16:43:44 [INFO]  P at (6,5) ate Herbivore. E:198
-2025-06-13 16:43:48 [INFO]  P at (6,9) ate Herbivore. E:242
-2025-06-13 16:43:49 [INFO]  H at (7,16) ate Algae. E:107
-2025-06-13 16:43:49 [INFO]  P at (9,25) ate Herbivore. E:148
-2025-06-13 16:43:49 [INFO]  H at (8,15) ate Algae. E:130
-2025-06-13 16:43:50 [INFO]  H at (8,14) ate Algae. E:153
+2025-06-13 18:42:39 [INFO]  Logger initialized. Logging to file: simulation.log
+2025-06-13 18:42:39 [INFO]  Logger initialized for console output.
+2025-06-13 18:42:39 [INFO]  Logger system initialized.
+2025-06-13 18:42:39 [INFO]  Main: Program starting...
+2025-06-13 18:42:39 [INFO]  --- Demonstrating Rule of Five with ResourceWrapper ---
+2025-06-13 18:42:39 [INFO]  Main: PGE Constructed, starting game loop.
+2025-06-13 18:42:39 [INFO]  PGE: OnUserCreate called.
+2025-06-13 18:42:39 [INFO]  Ocean (PImpl) created with size 30x30.
+2025-06-13 18:42:39 [INFO]  Ocean created with size 30x30.
+2025-06-13 18:42:39 [INFO]  PGE: Attempting to load sprites...
+2025-06-13 18:42:39 [INFO]  PGE: Base sprites loaded successfully.
+2025-06-13 18:42:39 [INFO]  PGE: sprHerbivoreHungry processed.
+2025-06-13 18:42:39 [INFO]  PGE: sprPredatorHungry processed.
+2025-06-13 18:42:39 [INFO]  PGE: Hungry sprites created and modified.
+2025-06-13 18:42:39 [INFO]  Added 56 Algae initially.
+2025-06-13 18:43:05 [INFO]  Logger initialized. Logging to file: simulation.log
+2025-06-13 18:43:05 [INFO]  Logger initialized for console output.
+2025-06-13 18:43:05 [INFO]  Logger system initialized.
+2025-06-13 18:43:05 [INFO]  Main: Program starting...
+2025-06-13 18:43:05 [INFO]  --- Demonstrating Rule of Five with ResourceWrapper ---
+2025-06-13 18:43:05 [INFO]  Main: PGE Constructed, starting game loop.
+2025-06-13 18:43:05 [INFO]  PGE: OnUserCreate called.
+2025-06-13 18:43:05 [INFO]  Ocean (PImpl) created with size 30x30.
+2025-06-13 18:43:05 [INFO]  Ocean created with size 30x30.
+2025-06-13 18:43:05 [INFO]  PGE: Attempting to load sprites...
+2025-06-13 18:43:05 [INFO]  PGE: Base sprites loaded successfully.
+2025-06-13 18:43:05 [INFO]  PGE: sprHerbivoreHungry processed.
+2025-06-13 18:43:05 [INFO]  PGE: sprPredatorHungry processed.
+2025-06-13 18:43:05 [INFO]  PGE: Hungry sprites created and modified.
+2025-06-13 18:43:05 [INFO]  Added 55 Algae initially.
+2025-06-13 18:44:50 [INFO]  Logger initialized. Logging to file: simulation.log
+2025-06-13 18:44:50 [INFO]  Logger initialized for console output.
+2025-06-13 18:44:50 [INFO]  Logger system initialized.
+2025-06-13 18:44:50 [INFO]  Main: Program starting...
+2025-06-13 18:44:50 [INFO]  --- Demonstrating Rule of Five with ResourceWrapper ---
+2025-06-13 18:44:50 [INFO]  Main: PGE Constructed, starting game loop.
+2025-06-13 18:44:50 [INFO]  PGE: OnUserCreate called.
+2025-06-13 18:44:50 [INFO]  Ocean (PImpl) created with size 30x30.
+2025-06-13 18:44:50 [INFO]  Ocean created with size 30x30.
+2025-06-13 18:44:50 [INFO]  PGE: Attempting to load sprites...
+2025-06-13 18:44:50 [INFO]  PGE: Base sprites loaded successfully.
+2025-06-13 18:44:50 [INFO]  PGE: sprHerbivoreHungry processed.
+2025-06-13 18:44:50 [INFO]  PGE: sprPredatorHungry processed.
+2025-06-13 18:44:50 [INFO]  PGE: Hungry sprites created and modified.
+2025-06-13 18:44:50 [INFO]  Added 58 Algae initially.
+2025-06-13 18:44:50 [INFO]  Added 7 HerbivoreFish initially.
+2025-06-13 18:44:50 [INFO]  Added 3 PredatorFish initially.
+2025-06-13 18:44:50 [INFO]  PGE: OnUserCreate finished.
+2025-06-13 18:44:50 [INFO]  H at (2,22) ate Algae. E:148
+2025-06-13 18:44:50 [INFO]  P at (6,24) ate Herbivore. E:252
+2025-06-13 18:44:50 [INFO]  H at (14,23) ate Algae. E:148
+2025-06-13 18:44:50 [INFO]  H at (1,0) ate Algae. E:148
+2025-06-13 18:44:51 [INFO]  H at (19,23) ate Algae. E:146
+2025-06-13 18:44:51 [INFO]  H at (1,2) ate Algae. E:174
+2025-06-13 18:44:52 [INFO]  H at (4,23) ate Algae. E:170
+2025-06-13 18:44:53 [INFO]  P at (5,25) ate Herbivore. E:237
+2025-06-13 18:44:54 [INFO]  PGE: OnUserDestroy called.
+2025-06-13 18:44:54 [INFO]  Main: Program finished.
+2025-06-13 18:44:54 [INFO]  Logger system shutting down.
+2025-06-13 18:44:54 [INFO]  Logger shutting down.
+2025-06-13 18:45:11 [INFO]  Logger initialized. Logging to file: simulation.log
+2025-06-13 18:45:11 [INFO]  Logger initialized for console output.
+2025-06-13 18:45:11 [INFO]  Logger system initialized.
+2025-06-13 18:45:11 [INFO]  Main: Program starting...
+2025-06-13 18:45:11 [INFO]  --- Demonstrating Rule of Five with ResourceWrapper ---
+2025-06-13 18:45:11 [INFO]  Main: PGE Constructed, starting game loop.
+2025-06-13 18:45:11 [INFO]  PGE: OnUserCreate called.
+2025-06-13 18:45:11 [INFO]  Ocean (PImpl) created with size 50x50.
+2025-06-13 18:45:11 [INFO]  Ocean created with size 50x50.
+2025-06-13 18:45:11 [INFO]  PGE: Attempting to load sprites...
+2025-06-13 18:45:11 [INFO]  PGE: Base sprites loaded successfully.
+2025-06-13 18:45:11 [INFO]  PGE: sprHerbivoreHungry processed.
+2025-06-13 18:45:11 [INFO]  PGE: sprPredatorHungry processed.
+2025-06-13 18:45:11 [INFO]  PGE: Hungry sprites created and modified.
+2025-06-13 18:45:11 [INFO]  Added 162 Algae initially.
+2025-06-13 18:45:11 [INFO]  Added 24 HerbivoreFish initially.
+2025-06-13 18:45:11 [INFO]  Added 8 PredatorFish initially.
+2025-06-13 18:45:11 [INFO]  PGE: OnUserCreate finished.
+2025-06-13 18:45:12 [INFO]  H at (25,45) ate Algae. E:148
+2025-06-13 18:45:12 [INFO]  H at (5,31) ate Algae. E:148
+2025-06-13 18:45:12 [INFO]  H at (38,47) ate Algae. E:148
+2025-06-13 18:45:12 [INFO]  H at (47,4) ate Algae. E:148
+2025-06-13 18:45:12 [INFO]  H at (14,31) ate Algae. E:148
+2025-06-13 18:45:12 [INFO]  H at (3,10) ate Algae. E:148
+2025-06-13 18:45:12 [INFO]  H at (11,19) ate Algae. E:148
+2025-06-13 18:45:12 [INFO]  H at (27,43) ate Algae. E:148
+2025-06-13 18:45:12 [INFO]  H at (22,36) ate Algae. E:148
+2025-06-13 18:45:12 [INFO]  H at (25,39) ate Algae. E:148
+2025-06-13 18:45:12 [INFO]  H at (39,47) ate Algae. E:176
+2025-06-13 18:45:12 [INFO]  H at (1,41) ate Algae. E:148
+2025-06-13 18:45:12 [INFO]  H at (21,18) ate Algae. E:146
+2025-06-13 18:45:12 [INFO]  H at (26,40) ate Algae. E:176
+2025-06-13 18:45:12 [INFO]  H at (21,35) ate Algae. E:176
+2025-06-13 18:45:12 [INFO]  P at (21,35) ate Herbivore. E:249
+2025-06-13 18:45:12 [INFO]  H at (11,20) ate Algae. E:176
+2025-06-13 18:45:13 [INFO]  H at (11,21) ate Algae. E:204
+2025-06-13 18:45:13 [INFO]  H at (45,7) ate Algae. E:172
+2025-06-13 18:45:13 [INFO]  H at (26,38) ate Algae. E:202
+2025-06-13 18:45:13 [INFO]  H at (7,20) ate Algae. E:142
+2025-06-13 18:45:13 [INFO]  H at (10,21) ate Algae. E:232
+2025-06-13 18:45:14 [INFO]  H at (4,41) ate Algae. E:170
+2025-06-13 18:45:14 [INFO]  H at (10,21) reproduced to (10,20). Parent E:150
+2025-06-13 18:45:14 [INFO]  H at (36,45) ate Algae. E:198
+2025-06-13 18:45:14 [INFO]  H at (21,47) ate Algae. E:166
+2025-06-13 18:45:14 [INFO]  H at (11,23) ate Algae. E:178
+2025-06-13 18:45:14 [INFO]  H at (7,18) ate Algae. E:168
+2025-06-13 18:45:14 [INFO]  H at (13,27) ate Algae. E:168
+2025-06-13 18:45:15 [INFO]  H at (12,27) ate Algae. E:196
+2025-06-13 18:45:15 [INFO]  H at (12,26) ate Algae. E:224
+2025-06-13 18:45:16 [INFO]  H at (4,3) ate Algae. E:160
+2025-06-13 18:45:16 [INFO]  P at (7,10) ate Herbivore. E:228
+2025-06-13 18:45:16 [INFO]  H at (37,28) ate Algae. E:132
+2025-06-13 18:45:16 [INFO]  H at (42,26) ate Algae. E:132
+2025-06-13 18:45:16 [INFO]  H at (33,44) ate Algae. E:220
+2025-06-13 18:45:16 [INFO]  H at (29,47) ate Algae. E:132
+2025-06-13 18:45:16 [INFO]  H at (41,9) ate Algae. E:190
+2025-06-13 18:45:16 [INFO]  H at (10,26) ate Algae. E:250
+2025-06-13 18:45:16 [INFO]  H at (9,25) ate Algae. E:250
+2025-06-13 18:45:16 [INFO]  H at (14,23) ate Algae. E:112
+2025-06-13 18:45:16 [INFO]  H at (41,25) ate Algae. E:160
+2025-06-13 18:45:16 [INFO]  H at (0,7) ate Algae. E:132
+2025-06-13 18:45:16 [INFO]  H at (32,44) ate Algae. E:248
+2025-06-13 18:45:16 [INFO]  H at (29,18) ate Algae. E:130
+2025-06-13 18:45:16 [INFO]  H at (41,9) reproduced to (42,10). Parent E:108
+2025-06-13 18:45:16 [INFO]  H at (34,4) ate Algae. E:130
+2025-06-13 18:45:16 [INFO]  H at (23,34) ate Algae. E:130
+2025-06-13 18:45:16 [INFO]  H at (13,24) ate Algae. E:140
+2025-06-13 18:45:16 [INFO]  H at (37,27) ate Algae. E:160
+2025-06-13 18:45:16 [INFO]  H at (35,3) ate Algae. E:158
+2025-06-13 18:45:16 [INFO]  H at (32,44) reproduced to (31,44). Parent E:166
+2025-06-13 18:45:16 [INFO]  H at (33,39) ate Algae. E:130
+2025-06-13 18:45:16 [INFO]  H at (28,41) ate Algae. E:160
+2025-06-13 18:45:17 [INFO]  H at (2,3) ate Algae. E:184
+2025-06-13 18:45:17 [INFO]  H at (1,4) ate Algae. E:212
+2025-06-13 18:45:17 [INFO]  H at (1,4) reproduced to (1,5). Parent E:130
+2025-06-13 18:45:17 [INFO]  H at (41,11) ate Algae. E:136
+2025-06-13 18:45:17 [INFO]  H at (8,26) reproduced to (7,26). Parent E:166
+2025-06-13 18:45:17 [INFO]  H at (25,35) reproduced to (25,36). Parent E:104
+2025-06-13 18:45:17 [INFO]  H at (21,12) ate Algae. E:154
+2025-06-13 18:45:17 [INFO]  H at (22,11) ate Algae. E:182
+2025-06-13 18:45:17 [INFO]  H at (28,16) ate Algae. E:154
+2025-06-13 18:45:17 [INFO]  H at (21,11) ate Algae. E:210
+2025-06-13 18:45:17 [INFO]  H at (7,28) ate Algae. E:194
+2025-06-13 18:45:17 [INFO]  H at (43,12) ate Algae. E:116
+2025-06-13 18:45:18 [INFO]  H at (38,1) ate Algae. E:124
+2025-06-13 18:45:18 [INFO]  H at (37,0) ate Algae. E:152
+2025-06-13 18:45:18 [INFO]  H at (44,13) ate Algae. E:144
+2025-06-13 18:45:18 [INFO]  H at (9,28) ate Algae. E:114
+2025-06-13 18:45:18 [INFO]  H at (38,0) ate Algae. E:180
+2025-06-13 18:45:18 [INFO]  H at (32,48) ate Algae. E:112
+2025-06-13 18:45:19 [INFO]  P at (20,48) ate Herbivore. E:210
+2025-06-13 18:45:19 [INFO]  H at (31,49) ate Algae. E:140
+2025-06-13 18:45:19 [INFO]  H at (14,19) ate Algae. E:186
+2025-06-13 18:45:19 [INFO]  H at (14,18) ate Algae. E:214
+2025-06-13 18:45:19 [INFO]  H at (4,25) ate Algae. E:216
+2025-06-13 18:45:20 [INFO]  H at (41,22) ate Algae. E:174
+2025-06-13 18:45:20 [INFO]  P at (4,25) ate Herbivore. E:204
+2025-06-13 18:45:20 [INFO]  H at (41,21) ate Algae. E:202
+2025-06-13 18:45:20 [INFO]  H at (34,49) ate Algae. E:182
+2025-06-13 18:45:20 [INFO]  H at (1,11) ate Algae. E:146
+2025-06-13 18:45:20 [INFO]  H at (13,17) reproduced to (12,18). Parent E:130
+2025-06-13 18:45:20 [INFO]  H at (42,22) ate Algae. E:230
+2025-06-13 18:45:20 [INFO]  H at (28,13) ate Algae. E:172
+2025-06-13 18:45:20 [INFO]  H at (36,35) ate Algae. E:144
+2025-06-13 18:45:20 [INFO]  H at (1,0) ate Algae. E:106
+2025-06-13 18:45:21 [INFO]  H at (11,16) ate Algae. E:116
+2025-06-13 18:45:21 [INFO]  H at (28,29) ate Algae. E:106
+2025-06-13 18:45:21 [INFO]  H at (43,1) ate Algae. E:112
+2025-06-13 18:45:21 [INFO]  P at (44,11) ate Herbivore. E:198
+2025-06-13 18:45:21 [INFO]  H at (24,9) reproduced to (25,10). Parent E:116
+2025-06-13 18:45:21 [INFO]  H at (8,16) ate Algae. E:172
+2025-06-13 18:45:21 [INFO]  H at (10,15) ate Algae. E:144
+2025-06-13 18:45:21 [INFO]  P at (6,27) ate Herbivore. E:267
+2025-06-13 18:45:22 [INFO]  P at (27,15) ate Herbivore. E:192
+2025-06-13 18:45:22 [INFO]  H at (27,9) ate Algae. E:116
+2025-06-13 18:45:22 [INFO]  H at (19,39) ate Algae. E:114
+2025-06-13 18:45:22 [INFO]  H at (5,1) ate Algae. E:128
+2025-06-13 18:45:22 [INFO]  H at (6,0) ate Algae. E:156
+2025-06-13 18:45:22 [INFO]  H at (26,8) ate Algae. E:144
+2025-06-13 18:45:22 [INFO]  H at (29,26) ate Algae. E:130
+2025-06-13 18:45:22 [INFO]  H at (34,35) ate Algae. E:166
+2025-06-13 18:45:23 [INFO]  H at (24,13) ate Algae. E:138
+2025-06-13 18:45:23 [INFO]  H at (6,44) ate Algae. E:162
+2025-06-13 18:45:23 [INFO]  P at (6,44) ate Herbivore. E:186
+2025-06-13 18:45:23 [INFO]  P at (9,25) ate Herbivore. E:333
+2025-06-13 18:45:23 [INFO]  P at (10,25) ate Herbivore. E:350
+2025-06-13 18:45:23 [INFO]  H at (24,14) ate Algae. E:166
+2025-06-13 18:45:23 [INFO]  H at (23,15) ate Algae. E:194
+2025-06-13 18:45:23 [INFO]  H at (22,29) ate Algae. E:132
+2025-06-13 18:45:23 [INFO]  H at (21,28) ate Algae. E:160
+2025-06-13 18:45:23 [INFO]  H at (6,2) ate Algae. E:182
+2025-06-13 18:45:23 [INFO]  H at (19,41) ate Algae. E:140
+2025-06-13 18:45:23 [INFO]  H at (33,33) ate Algae. E:192
+2025-06-13 18:45:23 [INFO]  H at (46,2) ate Algae. E:130
+2025-06-13 18:45:23 [INFO]  H at (20,42) ate Algae. E:168
+2025-06-13 18:45:23 [INFO]  H at (32,33) ate Algae. E:220
+2025-06-13 18:45:23 [INFO]  H at (7,2) ate Algae. E:210
+2025-06-13 18:45:23 [INFO]  H at (47,1) ate Algae. E:158
+2025-06-13 18:45:23 [INFO]  H at (22,27) ate Algae. E:188
+2025-06-13 18:45:24 [INFO]  H at (37,17) ate Algae. E:136
+2025-06-13 18:45:24 [INFO]  P at (32,45) ate Herbivore. E:180
+2025-06-13 18:45:24 [INFO]  H at (7,2) reproduced to (8,1). Parent E:128
+2025-06-13 18:45:24 [INFO]  H at (31,34) ate Algae. E:248
+2025-06-13 18:45:24 [INFO]  H at (44,19) ate Algae. E:244
+2025-06-13 18:45:24 [INFO]  H at (19,42) ate Algae. E:196
+2025-06-13 18:45:24 [INFO]  H at (20,43) ate Algae. E:224
+2025-06-13 18:45:24 [INFO]  H at (23,28) ate Algae. E:216
+2025-06-13 18:45:24 [INFO]  H at (23,28) reproduced to (23,27). Parent E:134
+2025-06-13 18:45:24 [INFO]  P at (31,44) ate Herbivore. E:252
+2025-06-13 18:45:24 [INFO]  H at (21,43) ate Algae. E:250
+2025-06-13 18:45:24 [INFO]  H at (45,20) ate Algae. E:250
+2025-06-13 18:45:25 [INFO]  H at (21,27) ate Algae. E:162
+2025-06-13 18:45:25 [INFO]  H at (20,26) ate Algae. E:190
+2025-06-13 18:45:25 [INFO]  P at (12,26) reproduced to (12,27). Parent E:202
+2025-06-13 18:45:25 [INFO]  H at (21,26) ate Algae. E:218
+2025-06-13 18:45:25 [INFO]  H at (21,25) ate Algae. E:246
+2025-06-13 18:45:26 [INFO]  H at (48,21) ate Algae. E:250
+2025-06-13 18:45:26 [INFO]  H at (48,22) ate Algae. E:250
+2025-06-13 18:45:26 [INFO]  H at (5,17) ate Algae. E:182
+2025-06-13 18:45:26 [INFO]  H at (49,22) ate Algae. E:250
+2025-06-13 18:45:26 [INFO]  H at (4,16) ate Algae. E:210
+2025-06-13 18:45:26 [INFO]  H at (3,16) ate Algae. E:238
+2025-06-13 18:45:26 [INFO]  H at (48,23) ate Algae. E:250
+2025-06-13 18:45:26 [INFO]  H at (12,2) ate Algae. E:112
+2025-06-13 18:45:26 [INFO]  P at (21,46) ate Herbivore. E:240
+2025-06-13 18:45:26 [INFO]  H at (4,15) ate Algae. E:250
+2025-06-13 18:45:26 [INFO]  H at (47,23) ate Algae. E:250
+2025-06-13 18:45:27 [INFO]  H at (3,15) ate Algae. E:250
+2025-06-13 18:45:27 [INFO]  H at (12,4) ate Algae. E:138
+2025-06-13 18:45:27 [INFO]  H at (21,11) reproduced to (21,12). Parent E:100
+2025-06-13 18:45:27 [INFO]  H at (2,16) ate Algae. E:250
+2025-06-13 18:45:27 [INFO]  H at (12,5) ate Algae. E:166
+2025-06-13 18:45:27 [INFO]  H at (32,33) reproduced to (31,34). Parent E:154
+2025-06-13 18:45:27 [INFO]  H at (20,23) reproduced to (21,22). Parent E:158
+2025-06-13 18:45:27 [INFO]  H at (11,6) ate Algae. E:194
+2025-06-13 18:45:27 [INFO]  H at (1,17) ate Algae. E:250
+2025-06-13 18:45:27 [INFO]  P at (16,24) ate Herbivore. E:183
+2025-06-13 18:45:27 [INFO]  H at (20,9) ate Algae. E:128
+2025-06-13 18:45:28 [INFO]  H at (19,8) ate Algae. E:156
+2025-06-13 18:45:28 [INFO]  H at (1,16) ate Algae. E:250
+2025-06-13 18:45:28 [INFO]  H at (12,7) ate Algae. E:222
+2025-06-13 18:45:28 [INFO]  H at (45,23) reproduced to (45,24). Parent E:164
+2025-06-13 18:45:28 [INFO]  H at (19,7) ate Algae. E:184
+2025-06-13 18:45:28 [INFO]  H at (0,16) ate Algae. E:250
+2025-06-13 18:45:28 [INFO]  H at (18,6) ate Algae. E:212
+2025-06-13 18:45:28 [INFO]  H at (19,9) ate Algae. E:114
+2025-06-13 18:45:28 [INFO]  H at (18,8) ate Algae. E:142
+2025-06-13 18:45:28 [INFO]  H at (33,11) ate Algae. E:170
+2025-06-13 18:45:29 [INFO]  H at (0,17) ate Algae. E:250
+2025-06-13 18:45:29 [INFO]  H at (1,18) ate Algae. E:250
+2025-06-13 18:45:29 [INFO]  H at (34,12) ate Algae. E:198
+2025-06-13 18:45:29 [INFO]  H at (2,18) ate Algae. E:250
+2025-06-13 18:45:29 [INFO]  H at (19,5) ate Algae. E:240
+2025-06-13 18:45:29 [INFO]  H at (2,18) reproduced to (3,17). Parent E:168
+2025-06-13 18:45:29 [INFO]  H at (17,9) ate Algae. E:170
+2025-06-13 18:45:29 [INFO]  H at (16,9) ate Algae. E:198
+2025-06-13 18:45:29 [INFO]  H at (33,12) ate Algae. E:226
+2025-06-13 18:45:30 [INFO]  H at (4,19) ate Algae. E:116
+2025-06-13 18:45:30 [INFO]  H at (35,40) ate Algae. E:108
+2025-06-13 18:45:30 [INFO]  H at (5,20) ate Algae. E:144
+2025-06-13 18:45:30 [INFO]  H at (15,8) ate Algae. E:226
+2025-06-13 18:45:30 [INFO]  H at (49,23) ate Algae. E:112
+2025-06-13 18:45:30 [INFO]  H at (34,13) ate Algae. E:250
+2025-06-13 18:45:30 [INFO]  H at (22,6) ate Algae. E:144
+2025-06-13 18:45:30 [INFO]  H at (23,5) ate Algae. E:172
+2025-06-13 18:45:30 [INFO]  H at (34,14) ate Algae. E:250
+2025-06-13 18:45:30 [INFO]  H at (24,4) ate Algae. E:200
+2025-06-13 18:45:30 [INFO]  H at (49,22) ate Algae. E:140
+2025-06-13 18:45:30 [INFO]  H at (49,21) ate Algae. E:168
+2025-06-13 18:45:30 [INFO]  H at (33,14) ate Algae. E:250
+2025-06-13 18:45:30 [INFO]  H at (34,41) ate Algae. E:136
+2025-06-13 18:45:31 [INFO]  H at (35,41) ate Algae. E:164
+2025-06-13 18:45:31 [INFO]  H at (32,14) ate Algae. E:250
+2025-06-13 18:45:31 [INFO]  P at (19,26) ate Herbivore. E:237
+2025-06-13 18:45:31 [INFO]  H at (48,20) ate Algae. E:196
+2025-06-13 18:45:31 [INFO]  H at (24,4) reproduced to (24,3). Parent E:118
+2025-06-13 18:45:31 [INFO]  H at (31,13) ate Algae. E:250
+2025-06-13 18:45:31 [INFO]  H at (36,41) ate Algae. E:192
+2025-06-13 18:45:31 [INFO]  H at (36,40) ate Algae. E:220
+2025-06-13 18:45:31 [INFO]  H at (32,13) ate Algae. E:250
+2025-06-13 18:45:31 [INFO]  H at (35,13) ate Algae. E:136
+2025-06-13 18:45:31 [INFO]  H at (35,12) ate Algae. E:164
+2025-06-13 18:45:31 [INFO]  H at (25,2) ate Algae. E:118
+2025-06-13 18:45:31 [INFO]  H at (6,12) ate Algae. E:130
+2025-06-13 18:45:31 [INFO]  H at (33,13) ate Algae. E:250
+2025-06-13 18:45:31 [INFO]  H at (26,4) ate Algae. E:146
+2025-06-13 18:45:31 [INFO]  H at (49,20) ate Algae. E:224
+2025-06-13 18:45:31 [INFO]  H at (37,39) ate Algae. E:248
+2025-06-13 18:45:31 [INFO]  H at (32,12) ate Algae. E:250
+2025-06-13 18:45:31 [INFO]  H at (34,11) ate Algae. E:192
+2025-06-13 18:45:31 [INFO]  H at (26,5) ate Algae. E:174
+2025-06-13 18:45:31 [INFO]  H at (18,7) ate Algae. E:250
+2025-06-13 18:45:31 [INFO]  H at (38,40) ate Algae. E:250
+2025-06-13 18:45:32 [INFO]  H at (27,5) ate Algae. E:202
+2025-06-13 18:45:32 [INFO]  H at (35,11) ate Algae. E:220
+2025-06-13 18:45:32 [INFO]  H at (11,8) reproduced to (10,7). Parent E:126
+2025-06-13 18:45:32 [INFO]  H at (25,1) ate Algae. E:146
+2025-06-13 18:45:32 [INFO]  H at (49,19) ate Algae. E:250
+2025-06-13 18:45:32 [INFO]  H at (26,0) ate Algae. E:174
+2025-06-13 18:45:32 [INFO]  H at (36,10) ate Algae. E:248
+2025-06-13 18:45:32 [INFO]  H at (48,18) ate Algae. E:250
+2025-06-13 18:45:32 [INFO]  H at (16,15) ate Algae. E:130
+2025-06-13 18:45:32 [INFO]  H at (18,7) reproduced to (19,7). Parent E:168
+2025-06-13 18:45:32 [INFO]  H at (37,38) ate Algae. E:250
+2025-06-13 18:45:32 [INFO]  H at (38,21) ate Algae. E:120
+2025-06-13 18:45:32 [INFO]  H at (49,17) ate Algae. E:250
+2025-06-13 18:45:32 [INFO]  H at (15,10) reproduced to (15,11). Parent E:134
+2025-06-13 18:45:32 [INFO]  H at (17,16) ate Algae. E:158
+2025-06-13 18:45:32 [INFO]  H at (25,0) ate Algae. E:202
+2025-06-13 18:45:32 [INFO]  H at (35,9) ate Algae. E:250
+2025-06-13 18:45:32 [INFO]  H at (31,14) ate Algae. E:250
+2025-06-13 18:45:33 [INFO]  H at (27,5) reproduced to (28,6). Parent E:116
+2025-06-13 18:45:33 [INFO]  P at (9,8) ate Herbivore. E:198
+2025-06-13 18:45:33 [INFO]  H at (38,38) ate Algae. E:250
+2025-06-13 18:45:33 [INFO]  H at (1,16) ate Algae. E:182
+2025-06-13 18:45:33 [INFO]  H at (15,16) ate Algae. E:184
+2025-06-13 18:45:33 [INFO]  H at (26,1) ate Algae. E:230
+2025-06-13 18:45:33 [INFO]  H at (35,10) ate Algae. E:250
+2025-06-13 18:45:33 [INFO]  H at (42,31) ate Algae. E:174
+2025-06-13 18:45:33 [INFO]  H at (48,17) ate Algae. E:250
+2025-06-13 18:45:33 [INFO]  H at (31,15) ate Algae. E:250
+2025-06-13 18:45:33 [INFO]  H at (27,0) ate Algae. E:250
+2025-06-13 18:45:33 [INFO]  H at (32,15) ate Algae. E:250
+2025-06-13 18:45:33 [INFO]  H at (47,17) ate Algae. E:250
+2025-06-13 18:45:33 [INFO]  H at (41,32) ate Algae. E:202
+2025-06-13 18:45:33 [INFO]  H at (37,37) reproduced to (37,38). Parent E:166
+2025-06-13 18:45:33 [INFO]  H at (34,10) ate Algae. E:250
+2025-06-13 18:45:33 [INFO]  H at (25,1) ate Algae. E:250
+2025-06-13 18:45:33 [INFO]  H at (33,15) ate Algae. E:250
+2025-06-13 18:45:33 [INFO]  H at (0,15) ate Algae. E:210
+2025-06-13 18:45:33 [INFO]  H at (33,9) ate Algae. E:250
+2025-06-13 18:45:33 [INFO]  H at (40,33) ate Algae. E:230
+2025-06-13 18:45:34 [INFO]  H at (41,33) ate Algae. E:250
+2025-06-13 18:45:34 [INFO]  H at (16,26) ate Algae. E:162
+2025-06-13 18:45:34 [INFO]  H at (18,43) ate Algae. E:90
+2025-06-13 18:45:34 [INFO]  H at (2,14) ate Algae. E:150
+2025-06-13 18:45:34 [INFO]  H at (24,0) ate Algae. E:250
+2025-06-13 18:45:34 [INFO]  H at (48,18) reproduced to (49,19). Parent E:166
+2025-06-13 18:45:34 [INFO]  H at (23,0) ate Algae. E:250
+2025-06-13 18:45:34 [INFO]  H at (42,33) ate Algae. E:250
+2025-06-13 18:45:34 [INFO]  H at (16,25) ate Algae. E:190
+2025-06-13 18:45:34 [INFO]  H at (1,15) ate Algae. E:238
+2025-06-13 18:45:34 [INFO]  H at (40,20) ate Algae. E:140
+2025-06-13 18:45:34 [INFO]  H at (1,14) ate Algae. E:178
+2025-06-13 18:45:34 [INFO]  H at (1,13) ate Algae. E:206
+2025-06-13 18:45:34 [INFO]  H at (22,0) ate Algae. E:250
+2025-06-13 18:45:34 [INFO]  P at (33,15) ate Herbivore. E:189
+2025-06-13 18:45:34 [INFO]  H at (18,42) ate Algae. E:118
+2025-06-13 18:45:34 [INFO]  H at (42,32) ate Algae. E:250
+2025-06-13 18:45:34 [INFO]  H at (16,25) reproduced to (17,25). Parent E:108
+2025-06-13 18:45:35 [INFO]  H at (0,14) reproduced to (1,14). Parent E:154
+2025-06-13 18:45:35 [INFO]  H at (28,10) ate Algae. E:112
+2025-06-13 18:45:35 [INFO]  H at (0,13) reproduced to (0,14). Parent E:122
+2025-06-13 18:45:35 [INFO]  H at (40,41) ate Algae. E:114
+2025-06-13 18:45:35 [INFO]  H at (41,31) ate Algae. E:250
+2025-06-13 18:45:35 [INFO]  P at (49,17) ate Herbivore. E:186
+2025-06-13 18:45:35 [INFO]  H at (21,0) ate Algae. E:250
+2025-06-13 18:45:35 [INFO]  H at (28,11) ate Algae. E:140
+2025-06-13 18:45:35 [INFO]  H at (40,42) ate Algae. E:142
+2025-06-13 18:45:35 [INFO]  H at (17,43) ate Algae. E:146
+2025-06-13 18:45:35 [INFO]  H at (19,2) ate Algae. E:106
+2025-06-13 18:45:35 [INFO]  H at (17,42) ate Algae. E:174
+2025-06-13 18:45:35 [INFO]  H at (40,32) ate Algae. E:250
+2025-06-13 18:45:35 [INFO]  H at (27,11) ate Algae. E:168
+2025-06-13 18:45:35 [INFO]  H at (41,42) ate Algae. E:170
+2025-06-13 18:45:35 [INFO]  H at (21,1) ate Algae. E:250
+2025-06-13 18:45:36 [INFO]  H at (47,15) ate Algae. E:112
+2025-06-13 18:45:36 [INFO]  H at (47,14) ate Algae. E:140
+2025-06-13 18:45:36 [INFO]  H at (42,5) ate Algae. E:108
+2025-06-13 18:45:36 [INFO]  H at (17,41) ate Algae. E:202
+2025-06-13 18:45:36 [INFO]  H at (40,31) ate Algae. E:250
+2025-06-13 18:45:36 [INFO]  H at (39,32) ate Algae. E:250
+2025-06-13 18:45:36 [INFO]  H at (22,1) ate Algae. E:250
+2025-06-13 18:45:36 [INFO]  H at (20,0) ate Algae. E:132
+2025-06-13 18:45:36 [INFO]  H at (16,42) ate Algae. E:230
+2025-06-13 18:45:36 [INFO]  H at (40,44) ate Algae. E:194
+2025-06-13 18:45:36 [INFO]  H at (42,6) ate Algae. E:136
+2025-06-13 18:45:37 [INFO]  H at (41,7) ate Algae. E:164
+2025-06-13 18:45:37 [INFO]  H at (15,43) ate Algae. E:250
+2025-06-13 18:45:37 [INFO]  H at (40,45) ate Algae. E:222
+2025-06-13 18:45:37 [INFO]  H at (39,46) ate Algae. E:250
+2025-06-13 18:45:37 [INFO]  H at (42,7) ate Algae. E:192
+2025-06-13 18:45:37 [INFO]  H at (42,8) ate Algae. E:220
+2025-06-13 18:45:37 [INFO]  H at (15,42) ate Algae. E:250
+2025-06-13 18:45:37 [INFO]  H at (40,47) ate Algae. E:250
+2025-06-13 18:45:37 [INFO]  H at (40,48) ate Algae. E:250
+2025-06-13 18:45:37 [INFO]  H at (37,31) reproduced to (36,31). Parent E:164
+2025-06-13 18:45:37 [INFO]  H at (16,43) ate Algae. E:250
+2025-06-13 18:45:38 [INFO]  H at (15,44) ate Algae. E:250
+2025-06-13 18:45:38 [INFO]  H at (39,47) ate Algae. E:250
+2025-06-13 18:45:38 [INFO]  H at (33,9) reproduced to (32,10). Parent E:152
+2025-06-13 18:45:38 [INFO]  H at (40,46) ate Algae. E:250
+2025-06-13 18:45:38 [INFO]  H at (41,47) ate Algae. E:250
+2025-06-13 18:45:38 [INFO]  H at (14,44) ate Algae. E:250
+2025-06-13 18:45:38 [INFO]  H at (41,48) ate Algae. E:250
+2025-06-13 18:45:38 [INFO]  H at (14,43) ate Algae. E:250
+2025-06-13 18:45:38 [INFO]  H at (41,10) reproduced to (41,11). Parent E:134
+2025-06-13 18:45:38 [INFO]  H at (42,49) ate Algae. E:250
+2025-06-13 18:45:38 [INFO]  H at (43,49) ate Algae. E:250
+2025-06-13 18:45:38 [INFO]  H at (20,1) reproduced to (19,2). Parent E:160
+2025-06-13 18:45:39 [INFO]  P at (14,43) ate Herbivore. E:165
+2025-06-13 18:45:39 [INFO]  H at (42,48) ate Algae. E:250
+2025-06-13 18:45:39 [INFO]  H at (41,49) ate Algae. E:250
+2025-06-13 18:45:39 [INFO]  H at (40,49) ate Algae. E:250
+2025-06-13 18:45:39 [INFO]  P at (30,10) ate Herbivore. E:234
+2025-06-13 18:45:39 [INFO]  H at (39,48) ate Algae. E:250
+2025-06-13 18:45:40 [INFO]  P at (4,8) ate Herbivore. E:228
+2025-06-13 18:45:40 [INFO]  H at (41,30) ate Algae. E:110
+2025-06-13 18:45:40 [INFO]  H at (38,48) ate Algae. E:250
+2025-06-13 18:45:40 [INFO]  H at (42,31) ate Algae. E:138
+2025-06-13 18:45:40 [INFO]  H at (43,32) ate Algae. E:166
+2025-06-13 18:45:40 [INFO]  H at (42,33) ate Algae. E:194
+2025-06-13 18:45:40 [INFO]  H at (39,47) ate Algae. E:250
+2025-06-13 18:45:41 [INFO]  H at (38,47) ate Algae. E:250
+2025-06-13 18:45:41 [INFO]  H at (38,46) ate Algae. E:250
+2025-06-13 18:45:41 [INFO]  H at (42,32) ate Algae. E:222
+2025-06-13 18:45:41 [INFO]  H at (43,31) ate Algae. E:250
+2025-06-13 18:45:41 [INFO]  H at (44,32) ate Algae. E:250
+2025-06-13 18:45:41 [INFO]  H at (39,45) ate Algae. E:250
+2025-06-13 18:45:41 [INFO]  H at (45,31) ate Algae. E:250
+2025-06-13 18:45:42 [INFO]  H at (38,44) ate Algae. E:250
+2025-06-13 18:45:42 [INFO]  H at (45,32) ate Algae. E:250
+2025-06-13 18:45:42 [INFO]  H at (46,33) ate Algae. E:250
+2025-06-13 18:45:42 [INFO]  P at (3,7) ate Herbivore. E:288
+2025-06-13 18:45:42 [INFO]  H at (46,32) ate Algae. E:250
+2025-06-13 18:45:42 [INFO]  Removed dead entity of type 2 at (33,30)
+2025-06-13 18:45:42 [INFO]  H at (47,32) ate Algae. E:250
+2025-06-13 18:45:42 [INFO]  H at (48,32) ate Algae. E:250
+2025-06-13 18:45:43 [INFO]  H at (49,32) ate Algae. E:250
+2025-06-13 18:45:43 [INFO]  H at (48,31) ate Algae. E:250
+2025-06-13 18:45:43 [INFO]  P at (23,47) ate Herbivore. E:213
+2025-06-13 18:45:43 [INFO]  H at (49,11) ate Algae. E:108
+2025-06-13 18:45:43 [INFO]  H at (48,30) ate Algae. E:250
+2025-06-13 18:45:43 [INFO]  Removed dead entity of type 2 at (5,17)
+2025-06-13 18:45:43 [INFO]  Removed dead entity of type 2 at (33,2)
+2025-06-13 18:45:44 [INFO]  H at (48,29) ate Algae. E:250
+2025-06-13 18:45:44 [INFO]  H at (49,29) ate Algae. E:250
+2025-06-13 18:45:44 [INFO]  Removed dead entity of type 2 at (14,14)
+2025-06-13 18:45:44 [INFO]  Removed dead entity of type 2 at (17,26)
+2025-06-13 18:45:44 [INFO]  H at (49,30) ate Algae. E:250
+2025-06-13 18:45:44 [INFO]  Removed dead entity of type 2 at (43,8)
+2025-06-13 18:45:45 [INFO]  H at (48,31) ate Algae. E:250
+2025-06-13 18:45:45 [INFO]  H at (35,46) reproduced to (35,47). Parent E:156
+2025-06-13 18:45:45 [INFO]  Removed dead entity of type 2 at (48,10)
+2025-06-13 18:45:45 [INFO]  H at (9,29) ate Algae. E:76
+2025-06-13 18:45:45 [INFO]  P at (2,11) ate Herbivore. E:339
+2025-06-13 18:45:45 [INFO]  H at (10,30) ate Algae. E:104
+2025-06-13 18:45:45 [INFO]  H at (11,31) ate Algae. E:132
+2025-06-13 18:45:45 [INFO]  H at (47,30) ate Algae. E:250
+2025-06-13 18:45:45 [INFO]  H at (11,30) ate Algae. E:160
+2025-06-13 18:45:45 [INFO]  Removed dead entity of type 2 at (31,36)
+2025-06-13 18:45:46 [INFO]  P at (35,46) ate Herbivore. E:195
+2025-06-13 18:45:46 [INFO]  P at (36,46) ate Herbivore. E:267
+2025-06-13 18:45:46 [INFO]  H at (10,31) ate Algae. E:188
+2025-06-13 18:45:46 [INFO]  H at (46,30) ate Algae. E:250
+2025-06-13 18:45:46 [INFO]  H at (10,32) ate Algae. E:216
+2025-06-13 18:45:46 [INFO]  Removed dead entity of type 2 at (34,27)
+2025-06-13 18:45:47 [INFO]  PGE: OnUserDestroy called.
+2025-06-13 18:45:47 [INFO]  Main: Program finished.
+2025-06-13 18:45:47 [INFO]  Logger system shutting down.
+2025-06-13 18:45:47 [INFO]  Logger shutting down.

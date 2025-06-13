@@ -14,7 +14,7 @@ enum class LogLevel {
     DEBUG,
     INFO,
     WARNING,
-    ERROR
+    LOG_ERROR
 };
 
 
@@ -23,7 +23,7 @@ inline std::string logLevelToString(LogLevel level) {
         case LogLevel::DEBUG:   return "[DEBUG]";
         case LogLevel::INFO:    return "[INFO] "; 
         case LogLevel::WARNING: return "[WARN] ";
-        case LogLevel::ERROR:   return "[ERROR]";
+        case LogLevel::LOG_ERROR:   return "[ERROR]";
         default:                return "[UNKNW]";
     }
 }
@@ -95,5 +95,5 @@ public:
     template<typename... Args> static void debug(const Args&... args) { log(LogLevel::DEBUG, args...); }
     template<typename... Args> static void info(const Args&... args) { log(LogLevel::INFO, args...); }
     template<typename... Args> static void warn(const Args&... args) { log(LogLevel::WARNING, args...); }
-    template<typename... Args> static void error(const Args&... args) { log(LogLevel::ERROR, args...); }
+    template<typename... Args> static void error(const Args&... args) { log(LogLevel::LOG_ERROR, args...); }
 };

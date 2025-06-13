@@ -1,20 +1,217 @@
-#include <iostream>
-#include <vector>
+#define OLC_PGE_APPLICATION
+#include "olc/olcPixelGameEngine.h"
+
+#include <string>
 #include <memory>
-#include <chrono>   
-#include <thread>  
-#include <cstdlib> 
-#include <limits> 
-#include <string> 
-#include <stdexcept> 
+#include <vector>
+#include <chrono>
+#include <thread>
+#include <stdexcept>
+#include <limits>
 
 #include "ocean.hpp"
 #include "algae.hpp"
 #include "herbivore.hpp"
 #include "predator.hpp"
-#include "utils/random.hpp" 
-#include "utils/logger.hpp" 
-#include "utils/resource_wrapper.hpp" 
+#include "utils/random.hpp"
+#include "utils/logger.hpp"
+#include "utils/resource_wrapper.hpp"
+
+const int SPRITE_SIZE = 16; 
+
+class OceanGame : public olc::PixelGameEngine {
+public:
+    OceanGame(int ocean_rows, int ocean_cols) : ocean_rows_(ocean_rows), ocean_cols_(ocean_cols) {
+        sAppName = "Living Ocean";
+        pge_ocean_ = nullptr; 
+    }
+
+private:
+    Ocean* pge_ocean_; 
+    int ocean_rows_;
+    int ocean_cols_;
+    float time_accumulator_ = 0.0f;
+    const float TICK_INTERVAL = 0.5f; 
+
+    std::unique_ptr<olc::Sprite> sprSand;
+    std::unique_ptr<olc::Sprite> sprAlgae;
+    std::unique_ptr<olc::Sprite> sprHerbivore;
+    std::unique_ptr<olc::Sprite> sprPredator;
+    std::unique_ptr<olc::Sprite> sprHerbivoreHungry;
+    std::unique_ptr<olc::Sprite> sprPredatorHungry;
+
+
+public:
+    bool OnUserCreate() override {
+    Logger::info("PGE: OnUserCreate called.");
+    pge_ocean_ = new Ocean(ocean_rows_, ocean_cols_);
+    Logger::info("Ocean created with size ", pge_ocean_->getRows(), "x", pge_ocean_->getCols(), ".");
+    SetPixelMode(olc::Pixel::ALPHA);
+    Logger::info("PGE: Attempting to load sprites...");
+    sprSand = std::make_unique<olc::Sprite>("./assets/sand.png");
+    if (!sprSand || sprSand->width == 0 || sprSand->height == 0) {
+        Logger::error("PGE: Failed to load sand.png or its dimensions are zero.");
+        return false;
+    }
+
+    sprAlgae = std::make_unique<olc::Sprite>("./assets/algae.png");
+    if (!sprAlgae || sprAlgae->width == 0 || sprAlgae->height == 0) {
+        Logger::error("PGE: Failed to load algae.png or its dimensions are zero.");
+        return false;
+    }
+
+    sprHerbivore = std::make_unique<olc::Sprite>("./assets/herbivore.png");
+    if (!sprHerbivore || sprHerbivore->width == 0 || sprHerbivore->height == 0) {
+        Logger::error("PGE: Failed to load herbivore.png or its dimensions are zero.");
+        return false;
+    }
+
+    sprPredator = std::make_unique<olc::Sprite>("./assets/predator.png");
+    if (!sprPredator || sprPredator->width == 0 || sprPredator->height == 0) { 
+        Logger::error("PGE: Failed to load predator.png or its dimensions are zero.");
+        return false;
+    }
+    
+    Logger::info("PGE: Base sprites loaded successfully.");
+
+    sprHerbivoreHungry = std::make_unique<olc::Sprite>(sprHerbivore->width, sprHerbivore->height);
+    if (!sprHerbivoreHungry || sprHerbivoreHungry->width == 0 || sprHerbivoreHungry->height == 0) {
+        Logger::error("PGE: Failed to create sprHerbivoreHungry or its dimensions are zero.");
+        return false; 
+    } else {
+        for (int32_t y = 0; y < sprHerbivore->height; ++y) { 
+            for (int32_t x = 0; x < sprHerbivore->width; ++x) {
+                olc::Pixel p = sprHerbivore->GetPixel(x, y);
+                if (p.a > 0) {
+                    sprHerbivoreHungry->SetPixel(x, y, olc::Pixel(p.r / 2, p.g / 2, p.b / 2, p.a));
+                } else {
+                    sprHerbivoreHungry->SetPixel(x, y, p);
+                }
+            }
+        }
+        Logger::info("PGE: sprHerbivoreHungry processed.");
+    }
+    sprPredatorHungry = std::make_unique<olc::Sprite>(sprPredator->width, sprPredator->height);
+    if (!sprPredatorHungry || sprPredatorHungry->width == 0 || sprPredatorHungry->height == 0) {
+        Logger::error("PGE: Failed to create sprPredatorHungry or its dimensions are zero.");
+        return false; 
+    } else {
+        for (int32_t y = 0; y < sprPredator->height; ++y) {
+            for (int32_t x = 0; x < sprPredator->width; ++x) {
+                olc::Pixel p = sprPredator->GetPixel(x, y);
+                if (p.a > 0) { 
+                    sprPredatorHungry->SetPixel(x, y, olc::Pixel(p.r / 2, p.g / 2, p.b / 2, p.a));
+                } else {
+                    sprPredatorHungry->SetPixel(x, y, p);
+                }
+            }
+        }
+        Logger::info("PGE: sprPredatorHungry processed.");
+    }
+    
+    Logger::info("PGE: Hungry sprites created and modified.");
+
+
+    int initial_algae_count = 0;
+    for(int i = 0; i < ocean_rows_ * ocean_cols_ / 15; ++i) { // вместо ocean_rows_ * ocean_cols_ / 15 можно написать точное число водорослей
+        int r = Random::getInt(0, pge_ocean_->getRows()-1);
+        int c = Random::getInt(0, pge_ocean_->getCols()-1);
+        if(pge_ocean_->addEntity(std::make_unique<Algae>(), r, c)) {
+            initial_algae_count++;
+        }
+    }
+    Logger::info("Added ", initial_algae_count, " Algae initially.");
+
+    int initial_herb_count = 0;
+    for(int i=0; i < ocean_rows_ * ocean_cols_ / 100; ++i) { // вместо ocean_rows_ * ocean_cols_ / 100 можно написать точное число травоядных
+        int r = Random::getInt(0, pge_ocean_->getRows()-1);
+        int c = Random::getInt(0, pge_ocean_->getCols()-1);
+        if(pge_ocean_->addEntity(std::make_unique<HerbivoreFish>(), r, c)) {
+            initial_herb_count++;
+        }
+    }
+    Logger::info("Added ", initial_herb_count, " HerbivoreFish initially.");
+
+    int initial_pred_count = 0;
+    for(int i=0; i < ocean_rows_ * ocean_cols_ / 300; ++i) { // вместо ocean_rows_ * ocean_cols_ / 300 можно написать точное число хищников
+        int r = Random::getInt(0, pge_ocean_->getRows()-1);
+        int c = Random::getInt(0, pge_ocean_->getCols()-1);
+        if(pge_ocean_->addEntity(std::make_unique<PredatorFish>(), r, c)) {
+            initial_pred_count++;
+        }
+    }
+    Logger::info("Added ", initial_pred_count, " PredatorFish initially.");
+    Logger::info("PGE: OnUserCreate finished.");
+    return true;
+}
+
+    bool OnUserUpdate(float fElapsedTime) override {
+        time_accumulator_ += fElapsedTime;
+
+        if (GetKey(olc::Key::ESCAPE).bPressed) {
+            return false; 
+        }
+        
+        if (time_accumulator_ >= TICK_INTERVAL) {
+            time_accumulator_ -= TICK_INTERVAL;
+            if (pge_ocean_) {
+                pge_ocean_->tick();
+            }
+        }
+
+        Clear(olc::BLACK);
+
+        if (pge_ocean_) {
+            for (int r = 0; r < pge_ocean_->getRows(); ++r) {
+                for (int c = 0; c < pge_ocean_->getCols(); ++c) {
+                    olc::Sprite* spriteToDraw = sprSand.get();
+                    Entity* entity = nullptr;
+                    try {
+                        entity = pge_ocean_->getEntity(r, c);
+                    } catch (const std::out_of_range& e) {
+                        Logger::error("Error getting entity at (", r, ",", c, "): ", e.what());
+                        continue; 
+                    }
+                    
+                    if (entity) {
+                        switch (entity->getType()) {
+                            case EntityType::ALGAE:
+                                spriteToDraw = sprAlgae.get();
+                                break;
+                            case EntityType::HERBIVORE:
+                                {
+                                    HerbivoreFish* hf = dynamic_cast<HerbivoreFish*>(entity);
+                                    if (hf && hf->getSymbol() == 'h') spriteToDraw = sprHerbivoreHungry.get();
+                                    else spriteToDraw = sprHerbivore.get();
+                                }
+                                break;
+                            case EntityType::PREDATOR:
+                                {
+                                    PredatorFish* pf = dynamic_cast<PredatorFish*>(entity);
+                                    if (pf && pf->getSymbol() == 'p') spriteToDraw = sprPredatorHungry.get();
+                                    else spriteToDraw = sprPredator.get();
+                                }
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    if (spriteToDraw) {
+                        DrawSprite(c * SPRITE_SIZE, r * SPRITE_SIZE, spriteToDraw);
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+    bool OnUserDestroy() override {
+        Logger::info("PGE: OnUserDestroy called.");
+        delete pge_ocean_;
+        pge_ocean_ = nullptr;
+        return true;
+    }
+};
 
 class LoggerInitializer {
 public:
@@ -77,108 +274,30 @@ void demonstrateRuleOfFive() {
     std::cout << "\n--- End of Rule of Five Demonstration (scopes ending) ---\n";
 }
 
+
 int main() {
     LoggerInitializer logger_guard; 
-    Logger::info("Simulation starting...");
+    Logger::info("Main: Program starting...");
 
     demonstrateRuleOfFive(); 
 
     std::cout << "\nPress Enter to start ocean simulation...\n";
     std::cin.get(); 
+    std::cin.clear(); 
+    std::cin.sync();  
 
-    try {
-        Ocean myOcean(15, 30); 
-        Logger::info("Ocean created with size ", myOcean.getRows(), "x", myOcean.getCols(), ".");
 
-        int initial_algae_count = 0;
-        for(int i=0; i < 40; ++i) {
-            int r = Random::getInt(0, myOcean.getRows()-1);
-            int c = Random::getInt(0, myOcean.getCols()-1);
-            if(myOcean.addEntity(std::make_unique<Algae>(), r, c)) {
-                initial_algae_count++;
-            }
-        }
-        Logger::info("Added ", initial_algae_count, " Algae initially.");
+    int ocean_sim_rows = 50; 
+    int ocean_sim_cols = 50; 
 
-        int initial_herb_count = 0;
-        for(int i=0; i < 10; ++i) { 
-            int r = Random::getInt(0, myOcean.getRows()-1);
-            int c = Random::getInt(0, myOcean.getCols()-1);
-            if(myOcean.addEntity(std::make_unique<HerbivoreFish>(), r, c)) {
-                initial_herb_count++;
-            }
-        }
-        Logger::info("Added ", initial_herb_count, " HerbivoreFish initially.");
-
-        int initial_pred_count = 0;
-        for(int i=0; i < 4; ++i) { 
-            int r = Random::getInt(0, myOcean.getRows()-1);
-            int c = Random::getInt(0, myOcean.getCols()-1);
-            if(myOcean.addEntity(std::make_unique<PredatorFish>(), r, c)) {
-                initial_pred_count++;
-            }
-        }
-        Logger::info("Added ", initial_pred_count, " PredatorFish initially.");
-        
-        const int num_ticks = 200; 
-        Logger::info("Starting simulation for ", num_ticks, " ticks.");
-
-        for (int i = 0; i < num_ticks; ++i) {
-            system("cls"); 
-            std::cout << "Tick: " << i + 1 << " / " << num_ticks << std::endl;
-            
-            myOcean.tick();    
-            myOcean.display(); 
-
-            int algae_count = 0;
-            int herb_count = 0;
-            int pred_count = 0;
-            int total_entities = 0;
-
-            for (int r_idx = 0; r_idx < myOcean.getRows(); ++r_idx) {
-                for (int c_idx = 0; c_idx < myOcean.getCols(); ++c_idx) {
-                    Entity* e = myOcean.getEntity(r_idx, c_idx);
-                    if (e) {
-                        total_entities++;
-                        switch (e->getType()) {
-                            case EntityType::ALGAE: algae_count++; break;
-                            case EntityType::HERBIVORE: herb_count++; break;
-                            case EntityType::PREDATOR: pred_count++; break;
-                            default: break;
-                        }
-                    }
-                }
-            }
-            std::cout << "Statistics: Algae: " << algae_count 
-                      << ", Herbivores: " << herb_count 
-                      << ", Predators: " << pred_count 
-                      << " (Total: " << total_entities << ")" << std::endl;
-            
-            std::this_thread::sleep_for(std::chrono::milliseconds(1000)); 
-        }
-        Logger::info("Simulation finished after ", num_ticks, " ticks.");
-
-    } catch (const std::out_of_range& oor) {
-        Logger::error("FATAL: Out of Range error caught in main: ", oor.what());
-    } catch (const std::invalid_argument& ia) {
-        Logger::error("FATAL: Invalid Argument error caught in main: ", ia.what());
-    } catch (const std::runtime_error& rte) {
-        Logger::error("FATAL: Runtime error caught in main: ", rte.what());
-    } catch (const std::exception& e) {
-        Logger::error("FATAL: An unexpected standard exception occurred in main: ", e.what());
-    } catch (...) {
-        Logger::error("FATAL: An unknown exception occurred in main.");
+    OceanGame game(ocean_sim_rows, ocean_sim_cols);
+    if (game.Construct(ocean_sim_cols * SPRITE_SIZE, ocean_sim_rows * SPRITE_SIZE, 4, 4)) {
+        Logger::info("Main: PGE Constructed, starting game loop.");
+        game.Start();
+    } else {
+        Logger::error("Main: PGE Failed to construct!");
     }
-
-    if (std::current_exception()) { 
-        std::cout << "An error occurred. Press Enter to exit..." << std::endl;
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        std::cin.get();
-        return 1;
-    }
-
-    std::cout << "Simulation finished successfully. Press Enter to exit..." << std::endl;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
-    std::cin.get(); 
+    
+    Logger::info("Main: Program finished.");
     return 0;
 }

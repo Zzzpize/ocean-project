@@ -4,6 +4,9 @@
     <ClCompile Include="C:\Users\user\Desktop\ocean\ocean-project\src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\Users\user\Desktop\ocean\ocean-project\src\ocean.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="C:\Users\user\Desktop\ocean\ocean-project\src\algae.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -11,9 +14,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C:\Users\user\Desktop\ocean\ocean-project\src\predator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="C:\Users\user\Desktop\ocean\ocean-project\src\ocean.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C:\Users\user\Desktop\ocean\ocean-project\src\utils\logger.cpp">
