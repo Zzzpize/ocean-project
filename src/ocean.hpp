@@ -3,6 +3,7 @@
 #include <vector>
 #include <memory>
 #include "entity.hpp"
+#include "utils/random.hpp"
 
 class Ocean {
 public:
@@ -32,6 +33,9 @@ public:
     void display() const;
 
     void tick(); 
+
+    std::vector<std::pair<int, int>> getEmptyAdjacentCells(int r, int c) const;
+    std::vector<std::pair<int, int>> getAdjacentCellsOfType(int r, int c, EntityType type) const;
 
 private:
     int rows_; 

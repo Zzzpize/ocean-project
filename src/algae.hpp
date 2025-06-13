@@ -6,7 +6,7 @@ public:
     Algae();
     ~Algae() override = default;
 
-    void update(int r, int c) override;
+    void update(Ocean& ocean, int r, int c) override;
     char getSymbol() const override;
     EntityType getType() const override;
 };
