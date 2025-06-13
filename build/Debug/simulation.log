@@ -529,3 +529,93 @@
 2025-06-13 15:07:20 [INFO]  H at (1,7) ate Algae. E:129
 2025-06-13 15:07:20 [INFO]  P at (1,7) ate Herbivore. E:146
 2025-06-13 15:07:22 [INFO]  Simulation finished after 50 ticks.
+2025-06-13 16:34:32 [INFO]  Logger initialized. Logging to file: simulation.log
+2025-06-13 16:34:32 [INFO]  Logger initialized for console output.
+2025-06-13 16:34:32 [INFO]  Logger system initialized.
+2025-06-13 16:34:32 [INFO]  Simulation starting...
+2025-06-13 16:34:32 [INFO]  --- Demonstrating Rule of Five with ResourceWrapper ---
+2025-06-13 16:34:36 [INFO]  Ocean (PImpl) created with size 15x30.
+2025-06-13 16:34:36 [INFO]  Ocean created with size 15x30.
+2025-06-13 16:34:36 [INFO]  Added 36 Algae initially.
+2025-06-13 16:34:36 [INFO]  Added 8 HerbivoreFish initially.
+2025-06-13 16:34:36 [INFO]  Added 4 PredatorFish initially.
+2025-06-13 16:34:36 [INFO]  Starting simulation for 200 ticks.
+2025-06-13 16:34:36 [INFO]  H at (11,15) ate Algae. E:123
+2025-06-13 16:34:36 [INFO]  H at (5,14) ate Algae. E:123
+2025-06-13 16:34:36 [INFO]  H at (8,17) ate Algae. E:123
+2025-06-13 16:34:36 [INFO]  H at (11,16) ate Algae. E:146
+2025-06-13 16:34:36 [INFO]  H at (10,12) ate Algae. E:123
+2025-06-13 16:34:36 [INFO]  H at (4,22) ate Algae. E:123
+2025-06-13 16:34:36 [INFO]  H at (1,16) ate Algae. E:123
+2025-06-13 16:34:37 [INFO]  H at (6,23) ate Algae. E:121
+2025-06-13 16:34:37 [INFO]  H at (4,21) ate Algae. E:146
+2025-06-13 16:34:37 [INFO]  H at (2,15) ate Algae. E:146
+2025-06-13 16:34:37 [INFO]  P at (7,23) ate Herbivore. E:202
+2025-06-13 16:34:37 [INFO]  H at (3,16) ate Algae. E:169
+2025-06-13 16:34:37 [INFO]  H at (13,15) ate Algae. E:167
+2025-06-13 16:34:37 [INFO]  H at (3,6) ate Algae. E:119
+2025-06-13 16:34:37 [INFO]  H at (14,14) ate Algae. E:190
+2025-06-13 16:34:37 [INFO]  H at (14,14) reproduced to (13,13). Parent E:118
+2025-06-13 16:34:37 [INFO]  H at (7,15) ate Algae. E:142
+2025-06-13 16:34:37 [INFO]  H at (9,14) ate Algae. E:142
+2025-06-13 16:34:37 [INFO]  H at (6,16) ate Algae. E:165
+2025-06-13 16:34:37 [INFO]  H at (2,18) ate Algae. E:190
+2025-06-13 16:34:37 [INFO]  H at (6,20) ate Algae. E:165
+2025-06-13 16:34:37 [INFO]  H at (7,20) reproduced to (6,19). Parent E:91
+2025-06-13 16:34:37 [INFO]  H at (5,16) ate Algae. E:188
+2025-06-13 16:34:38 [INFO]  H at (1,6) ate Algae. E:138
+2025-06-13 16:34:38 [INFO]  H at (10,11) ate Algae. E:99
+2025-06-13 16:34:38 [INFO]  H at (11,10) ate Algae. E:122
+2025-06-13 16:34:38 [INFO]  H at (11,18) ate Algae. E:134
+2025-06-13 16:34:38 [INFO]  H at (10,10) ate Algae. E:145
+2025-06-13 16:34:38 [INFO]  H at (2,21) ate Algae. E:108
+2025-06-13 16:34:38 [INFO]  H at (1,22) ate Algae. E:131
+2025-06-13 16:35:20 [INFO]  Logger initialized. Logging to file: simulation.log
+2025-06-13 16:35:20 [INFO]  Logger initialized for console output.
+2025-06-13 16:35:20 [INFO]  Logger system initialized.
+2025-06-13 16:35:20 [INFO]  Simulation starting...
+2025-06-13 16:35:20 [INFO]  --- Demonstrating Rule of Five with ResourceWrapper ---
+2025-06-13 16:35:21 [INFO]  Ocean (PImpl) created with size 15x30.
+2025-06-13 16:35:21 [INFO]  Ocean created with size 15x30.
+2025-06-13 16:35:21 [INFO]  Added 39 Algae initially.
+2025-06-13 16:35:21 [INFO]  Added 10 HerbivoreFish initially.
+2025-06-13 16:35:21 [INFO]  Added 4 PredatorFish initially.
+2025-06-13 16:35:21 [INFO]  Starting simulation for 200 ticks.
+2025-06-13 16:35:21 [INFO]  H at (5,23) ate Algae. E:123
+2025-06-13 16:35:21 [INFO]  P at (1,2) ate Herbivore. E:202
+2025-06-13 16:35:21 [INFO]  H at (4,11) ate Algae. E:121
+2025-06-13 16:35:21 [INFO]  H at (3,5) ate Algae. E:119
+2025-06-13 16:35:21 [INFO]  P at (1,14) ate Herbivore. E:198
+2025-06-13 16:35:21 [INFO]  H at (2,19) ate Algae. E:119
+2025-06-13 16:35:21 [INFO]  H at (1,20) ate Algae. E:142
+2025-06-13 16:35:21 [INFO]  H at (3,11) ate Algae. E:144
+2025-06-13 16:35:22 [INFO]  P at (1,13) ate Herbivore. E:254
+2025-06-13 16:35:22 [INFO]  H at (0,19) ate Algae. E:165
+2025-06-13 16:35:22 [INFO]  H at (4,12) ate Algae. E:167
+2025-06-13 16:35:22 [INFO]  P at (1,13) reproduced to (2,13). Parent E:140
+2025-06-13 16:35:22 [INFO]  H at (0,17) ate Algae. E:186
+2025-06-13 16:35:22 [INFO]  H at (5,13) reproduced to (4,12). Parent E:93
+2025-06-13 16:35:22 [INFO]  H at (1,17) ate Algae. E:200
+2025-06-13 16:35:22 [INFO]  P at (4,12) ate Herbivore. E:152
+2025-06-13 16:35:22 [INFO]  H at (9,23) ate Algae. E:136
+2025-06-13 16:35:22 [INFO]  H at (2,16) ate Algae. E:200
+2025-06-13 16:35:22 [INFO]  H at (3,15) ate Algae. E:200
+2025-06-13 16:35:22 [INFO]  P at (3,15) ate Herbivore. E:188
+2025-06-13 16:35:22 [INFO]  P at (6,12) ate Herbivore. E:182
+2025-06-13 16:35:22 [INFO]  H at (10,8) ate Algae. E:111
+2025-06-13 16:35:23 [INFO]  H at (10,9) ate Algae. E:134
+2025-06-13 16:35:23 [INFO]  H at (9,8) ate Algae. E:157
+2025-06-13 16:35:23 [INFO]  H at (8,6) ate Algae. E:107
+2025-06-13 16:35:24 [INFO]  H at (11,9) ate Algae. E:176
+2025-06-13 16:35:24 [INFO]  H at (11,1) ate Algae. E:101
+2025-06-13 16:35:24 [INFO]  H at (12,2) ate Algae. E:124
+2025-06-13 16:35:24 [INFO]  H at (12,3) ate Algae. E:147
+2025-06-13 16:35:25 [INFO]  H at (13,9) ate Algae. E:189
+2025-06-13 16:35:25 [INFO]  P at (6,26) ate Herbivore. E:146
+2025-06-13 16:35:25 [INFO]  H at (14,9) ate Algae. E:200
+2025-06-13 16:35:26 [INFO]  H at (8,9) ate Algae. E:108
+2025-06-13 16:35:26 [INFO]  H at (8,10) ate Algae. E:131
+2025-06-13 16:35:26 [INFO]  H at (13,10) reproduced to (13,11). Parent E:120
+2025-06-13 16:35:26 [INFO]  H at (8,11) ate Algae. E:154
+2025-06-13 16:35:26 [INFO]  H at (9,12) ate Algae. E:177
+2025-06-13 16:35:27 [INFO]  H at (12,13) ate Algae. E:101

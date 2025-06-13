@@ -5,7 +5,8 @@
 #include <thread>  
 #include <cstdlib> 
 #include <limits> 
-#include <string>
+#include <string> 
+#include <stdexcept> 
 
 #include "ocean.hpp"
 #include "algae.hpp"
@@ -27,7 +28,9 @@ public:
     }
 };
 
-void RuleOfFive() {
+void demonstrateRuleOfFive() {
+    Logger::info("--- Demonstrating Rule of Five with ResourceWrapper ---");
+    std::cout << "\n--- Demonstrating Rule of Five with ResourceWrapper ---\n";
 
     std::cout << "\n1. Construction:\n";
     ResourceWrapper r1("Hello");
@@ -78,10 +81,10 @@ int main() {
     LoggerInitializer logger_guard; 
     Logger::info("Simulation starting...");
 
-    RuleOfFive(); 
+    demonstrateRuleOfFive(); 
 
     std::cout << "\nPress Enter to start ocean simulation...\n";
-    std::cin.get();
+    std::cin.get(); 
 
     try {
         Ocean myOcean(15, 30); 
@@ -117,7 +120,7 @@ int main() {
         }
         Logger::info("Added ", initial_pred_count, " PredatorFish initially.");
         
-        const int num_ticks = 200;
+        const int num_ticks = 200; 
         Logger::info("Starting simulation for ", num_ticks, " ticks.");
 
         for (int i = 0; i < num_ticks; ++i) {
@@ -155,14 +158,26 @@ int main() {
         }
         Logger::info("Simulation finished after ", num_ticks, " ticks.");
 
+    } catch (const std::out_of_range& oor) {
+        Logger::error("FATAL: Out of Range error caught in main: ", oor.what());
+    } catch (const std::invalid_argument& ia) {
+        Logger::error("FATAL: Invalid Argument error caught in main: ", ia.what());
+    } catch (const std::runtime_error& rte) {
+        Logger::error("FATAL: Runtime error caught in main: ", rte.what());
     } catch (const std::exception& e) {
-        Logger::error("An exception occurred: ", e.what());
-        std::cout << "Press Enter to exit..." << std::endl;
+        Logger::error("FATAL: An unexpected standard exception occurred in main: ", e.what());
+    } catch (...) {
+        Logger::error("FATAL: An unknown exception occurred in main.");
+    }
+
+    if (std::current_exception()) { 
+        std::cout << "An error occurred. Press Enter to exit..." << std::endl;
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         std::cin.get();
         return 1;
     }
-    std::cout << "Simulation finished. Press Enter to exit..." << std::endl;
+
+    std::cout << "Simulation finished successfully. Press Enter to exit..." << std::endl;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
     std::cin.get(); 
     return 0;

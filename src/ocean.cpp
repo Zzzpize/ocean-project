@@ -7,6 +7,7 @@
 #include <stdexcept>
 #include <iostream>     
 #include <algorithm>    
+#include <string> // Для std::to_string
 
 class Ocean::OceanImpl {
 public:
@@ -32,8 +33,10 @@ public:
             return false;
         }
         if (!isValidCoordinateImpl(r, c)) {
-            Logger::warn("Cannot add entity: coordinates (", r, ",", c, ") are outside ocean bounds (", rows_, "x", cols_, "). Entity type: ", static_cast<int>(entity->getType()));
-            return false; 
+            std::string err_msg = "addEntityImpl: Coordinates (" + std::to_string(r) + "," + std::to_string(c) + 
+                                  ") are outside ocean bounds (" + std::to_string(rows_) + "x" + std::to_string(cols_) + ").";
+            Logger::error(err_msg);
+            throw std::out_of_range(err_msg);
         }
         if (grid_[r][c]) { 
             Logger::debug("Cannot add entity: cell (", r, ",", c, ") is already occupied by type ", static_cast<int>(grid_[r][c]->getType()), ". Requested type: ", static_cast<int>(entity->getType()));
@@ -45,22 +48,39 @@ public:
 
     Entity* getEntityImpl(int r, int c) const {
         if (!isValidCoordinateImpl(r, c)) {
-            return nullptr; 
+            std::string err_msg = "getEntityImpl: Coordinates (" + std::to_string(r) + "," + std::to_string(c) + 
+                                  ") are outside ocean bounds (" + std::to_string(rows_) + "x" + std::to_string(cols_) + ").";
+            Logger::error(err_msg);
+            throw std::out_of_range(err_msg);
         }
         return grid_[r][c].get(); 
     }
 
     std::unique_ptr<Entity> removeEntityImpl(int r, int c) {
-        if (!isValidCoordinateImpl(r, c) || !grid_[r][c]) {
+        if (!isValidCoordinateImpl(r, c)) {
+            std::string err_msg = "removeEntityImpl: Coordinates (" + std::to_string(r) + "," + std::to_string(c) + 
+                                  ") are outside ocean bounds (" + std::to_string(rows_) + "x" + std::to_string(cols_) + ").";
+            Logger::error(err_msg);
+            throw std::out_of_range(err_msg);
+        }
+        if (!grid_[r][c]) {
             return nullptr; 
         }
         return std::move(grid_[r][c]); 
     }
 
     bool moveEntityImpl(int r_from, int c_from, int r_to, int c_to) {
-        if (!isValidCoordinateImpl(r_from, c_from) || !isValidCoordinateImpl(r_to, c_to)) {
-            Logger::warn("Invalid coordinates for move operation. From (", r_from, ",", c_from, ") to (", r_to, ",", c_to, ").");
-            return false;
+        if (!isValidCoordinateImpl(r_from, c_from)) {
+            std::string err_msg = "moveEntityImpl: Source coordinates (" + std::to_string(r_from) + "," + std::to_string(c_from) + 
+                                  ") are outside ocean bounds.";
+            Logger::error(err_msg);
+            throw std::out_of_range(err_msg);
+        }
+        if (!isValidCoordinateImpl(r_to, c_to)) {
+            std::string err_msg = "moveEntityImpl: Target coordinates (" + std::to_string(r_to) + "," + std::to_string(c_to) + 
+                                  ") are outside ocean bounds.";
+            Logger::error(err_msg);
+            throw std::out_of_range(err_msg);
         }
         if (!grid_[r_from][c_from]) {
             Logger::warn("No entity at source location (", r_from, ",", c_from, ") to move.");
@@ -78,10 +98,10 @@ public:
     }
 
     void displayImpl() const {
-        for (int r = 0; r < rows_; ++r) {
-            for (int c = 0; c < cols_; ++c) {
-                if (grid_[r][c]) {
-                    std::cout << grid_[r][c]->getSymbol() << " ";
+        for (int r_idx = 0; r_idx < rows_; ++r_idx) {
+            for (int c_idx = 0; c_idx < cols_; ++c_idx) {
+                if (grid_[r_idx][c_idx]) {
+                    std::cout << grid_[r_idx][c_idx]->getSymbol() << " ";
                 } else {
                     std::cout << ". "; 
                 }
@@ -196,8 +216,9 @@ public:
 
 Ocean::Ocean(int rows, int cols) {
     if (rows <= 0 || cols <= 0) {
-        Logger::error("Ocean public constructor: dimensions must be positive. Requested: ", rows, "x", cols);
-        throw std::invalid_argument("Ocean dimensions must be positive.");
+        std::string err_msg = "Ocean constructor: dimensions must be positive. Requested: " + std::to_string(rows) + "x" + std::to_string(cols);
+        Logger::error(err_msg);
+        throw std::invalid_argument(err_msg);
     }
     pImpl_ = std::make_unique<OceanImpl>(rows, cols);
     Logger::info("Ocean (PImpl) created with size ", rows, "x", cols, ".");
@@ -209,61 +230,109 @@ Ocean::Ocean(Ocean&& other) noexcept = default;
 Ocean& Ocean::operator=(Ocean&& other) noexcept = default;
 
 bool Ocean::addEntity(std::unique_ptr<Entity> entity, int r, int c) {
-    if (!pImpl_) { Logger::error("pImpl_ is null in Ocean::addEntity"); return false;}
+    if (!pImpl_) { 
+        std::string err_msg = "Ocean::addEntity called on an invalid (moved-from or uninitialized) Ocean object.";
+        Logger::error(err_msg);
+        throw std::runtime_error(err_msg);
+    }
     return pImpl_->addEntityImpl(std::move(entity), r, c);
 }
 
 Entity* Ocean::getEntity(int r, int c) const {
-    if (!pImpl_) { Logger::error("pImpl_ is null in Ocean::getEntity"); return nullptr;}
+    if (!pImpl_) { 
+        std::string err_msg = "Ocean::getEntity called on an invalid (moved-from or uninitialized) Ocean object.";
+        Logger::error(err_msg);
+        throw std::runtime_error(err_msg);
+    }
     return pImpl_->getEntityImpl(r, c);
 }
 
 std::unique_ptr<Entity> Ocean::removeEntity(int r, int c) {
-    if (!pImpl_) { Logger::error("pImpl_ is null in Ocean::removeEntity"); return nullptr;}
+    if (!pImpl_) { 
+        std::string err_msg = "Ocean::removeEntity called on an invalid (moved-from or uninitialized) Ocean object.";
+        Logger::error(err_msg);
+        throw std::runtime_error(err_msg);
+    }
     return pImpl_->removeEntityImpl(r, c);
 }
     
 bool Ocean::moveEntity(int r_from, int c_from, int r_to, int c_to) {
-    if (!pImpl_) { Logger::error("pImpl_ is null in Ocean::moveEntity"); return false;}
+    if (!pImpl_) { 
+        std::string err_msg = "Ocean::moveEntity called on an invalid (moved-from or uninitialized) Ocean object.";
+        Logger::error(err_msg);
+        throw std::runtime_error(err_msg);
+    }
     return pImpl_->moveEntityImpl(r_from, c_from, r_to, c_to);
 }
 
 int Ocean::getRows() const {
-    if (!pImpl_) { Logger::error("pImpl_ is null in Ocean::getRows"); return 0;}
+    if (!pImpl_) { 
+        std::string err_msg = "Ocean::getRows called on an invalid (moved-from or uninitialized) Ocean object.";
+        Logger::error(err_msg);
+        throw std::runtime_error(err_msg);
+    }
     return pImpl_->rows_; 
 }
 
 int Ocean::getCols() const {
-    if (!pImpl_) { Logger::error("pImpl_ is null in Ocean::getCols"); return 0;}
+    if (!pImpl_) { 
+        std::string err_msg = "Ocean::getCols called on an invalid (moved-from or uninitialized) Ocean object.";
+        Logger::error(err_msg);
+        throw std::runtime_error(err_msg);
+    }
     return pImpl_->cols_; 
 }
 
 void Ocean::display() const {
-    if (!pImpl_) { Logger::error("pImpl_ is null in Ocean::display"); return;}
+    if (!pImpl_) { 
+        std::string err_msg = "Ocean::display called on an invalid (moved-from or uninitialized) Ocean object.";
+        Logger::error(err_msg);
+        throw std::runtime_error(err_msg);
+    }
     pImpl_->displayImpl();
 }
 
 void Ocean::tick() {
-    if (!pImpl_) { Logger::error("pImpl_ is null in Ocean::tick"); return;}
+    if (!pImpl_) { 
+        std::string err_msg = "Ocean::tick called on an invalid (moved-from or uninitialized) Ocean object.";
+        Logger::error(err_msg);
+        throw std::runtime_error(err_msg);
+    }
     pImpl_->tickImpl(*this); 
 }
     
 bool Ocean::isValidCoordinate(int r, int c) const {
-    if (!pImpl_) { Logger::error("pImpl_ is null in Ocean::isValidCoordinate"); return false;}
+    if (!pImpl_) { 
+        std::string err_msg = "Ocean::isValidCoordinate called on an invalid (moved-from or uninitialized) Ocean object.";
+        Logger::error(err_msg);
+        throw std::runtime_error(err_msg);
+    }
     return pImpl_->isValidCoordinateImpl(r, c);
 }
 
 std::vector<std::pair<int, int>> Ocean::getEmptyAdjacentCells(int r, int c) const {
-    if (!pImpl_) { Logger::error("pImpl_ is null in Ocean::getEmptyAdjacentCells"); return {};}
+    if (!pImpl_) { 
+        std::string err_msg = "Ocean::getEmptyAdjacentCells called on an invalid (moved-from or uninitialized) Ocean object.";
+        Logger::error(err_msg);
+        throw std::runtime_error(err_msg);
+    }
     return pImpl_->getEmptyAdjacentCellsImpl(r, c);
 }
 
 std::vector<std::pair<int, int>> Ocean::getAdjacentCellsOfType(int r, int c, EntityType type) const {
-    if (!pImpl_) { Logger::error("pImpl_ is null in Ocean::getAdjacentCellsOfType"); return {};}
+    if (!pImpl_) { 
+        std::string err_msg = "Ocean::getAdjacentCellsOfType called on an invalid (moved-from or uninitialized) Ocean object.";
+        Logger::error(err_msg);
+        throw std::runtime_error(err_msg);
+    }
     return pImpl_->getAdjacentCellsOfTypeImpl(r, c, type);
 }
 
 std::pair<int, int> Ocean::getDirectionToNearestTarget(int start_r, int start_c, EntityType target_type, int radius) const {
-    if (!pImpl_) { Logger::error("pImpl_ is null in Ocean::getDirectionToNearestTarget"); return {0,0};}
+    if (!pImpl_) { 
+        std::string err_msg = "Ocean::getDirectionToNearestTarget called on an invalid (moved-from or uninitialized) Ocean object.";
+        Logger::error(err_msg);
+        throw std::runtime_error(err_msg);
+    }
     return pImpl_->getDirectionToNearestTargetImpl(start_r, start_c, target_type, radius);
 }
