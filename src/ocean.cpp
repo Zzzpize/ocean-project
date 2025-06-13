@@ -110,36 +110,66 @@ void Ocean::tick() {
             }
         }
     }
-    Logger::debug("Found ", entities_to_update.size(), " entities to update this tick.");
-
     Random::shuffle(entities_to_update);
 
     for (const auto& pos : entities_to_update) {
         int r = pos.first;
         int c = pos.second;
-        
         if (grid_[r][c]) { 
-            Logger::debug("Updating entity at (", r, ",", c, ") of type ", static_cast<int>(grid_[r][c]->getType()));
             grid_[r][c]->update(*this, r, c); 
         }
     } 
 
-    Logger::debug("Starting dead entity removal phase.");
     int removed_count = 0;
     for (int r_scan = 0; r_scan < rows_; ++r_scan) {
         for (int c_scan = 0; c_scan < cols_; ++c_scan) {
             if (grid_[r_scan][c_scan]) {
                 if (grid_[r_scan][c_scan]->isDead()) { 
-                    Logger::info("Removing dead entity of type ", static_cast<int>(grid_[r_scan][c_scan]->getType()), " at (", r_scan, ",", c_scan, ")");
+                    EntityType dead_entity_type = grid_[r_scan][c_scan]->getType();
                     removeEntity(r_scan, c_scan); 
+                    Logger::info("Removed dead entity of type ", static_cast<int>(dead_entity_type), " at (", r_scan, ",", c_scan, ")");
                     removed_count++;
                 }
             }
         }
     }
-    if (removed_count > 0) {
-       Logger::debug("Removed ", removed_count, " dead entities this tick.");
+}
+
+std::pair<int, int> Ocean::getDirectionToNearestTarget(int start_r, int start_c, EntityType target_type, int radius) const {
+    std::pair<int, int> best_target_pos = {-1, -1};
+    int min_dist_sq = radius * radius + radius * radius + 1; 
+    for (int r_check = start_r - radius; r_check <= start_r + radius; ++r_check) {
+        for (int c_check = start_c - radius; c_check <= start_c + radius; ++c_check) {
+            if (r_check == start_r && c_check == start_c) continue;
+
+            if (isValidCoordinate(r_check, c_check)) {
+                Entity* entity = grid_[r_check][c_check].get();
+                if (entity && entity->getType() == target_type) {
+                    int dr = r_check - start_r;
+                    int dc = c_check - start_c;
+                    int dist_sq = dr * dr + dc * dc;
+
+                    if (dist_sq < min_dist_sq) {
+                        min_dist_sq = dist_sq;
+                        best_target_pos = {r_check, c_check};
+                    }
+                }
+            }
+        }
     }
+
+    if (best_target_pos.first != -1) {
+        int move_dr = 0;
+        if (best_target_pos.first < start_r) move_dr = -1;
+        else if (best_target_pos.first > start_r) move_dr = 1;
+
+        int move_dc = 0;
+        if (best_target_pos.second < start_c) move_dc = -1;
+        else if (best_target_pos.second > start_c) move_dc = 1;
+        
+        return {move_dr, move_dc};
+    }
+    return {0, 0};
 }
 
 std::vector<std::pair<int, int>> Ocean::getEmptyAdjacentCells(int r, int c) const {

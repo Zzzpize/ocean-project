@@ -8,7 +8,7 @@
 Algae::Algae() {}
 
 void Algae::update(Ocean& ocean, int r, int c) {
-    constexpr int REPRODUCTION_CHANCE_PERCENT = 10; 
+    constexpr int REPRODUCTION_CHANCE_PERCENT = 5; 
     if (Random::getInt(1, 100) <= REPRODUCTION_CHANCE_PERCENT) {
         std::vector<std::pair<int, int>> emptyNeighbors = ocean.getEmptyAdjacentCells(r, c);
         

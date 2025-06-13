@@ -7,12 +7,15 @@ namespace Config {
     const int HERBIVORE_MAX_ENERGY = 200;
     const int HERBIVORE_MAX_AGE = 50; 
     const int HERBIVORE_ENERGY_PER_TICK = 2; 
-    const int HERBIVORE_ENERGY_FROM_ALGAE = 20;
+    const int HERBIVORE_ENERGY_FROM_ALGAE = 25;
 
-    const int HERBIVORE_REPRODUCTION_ENERGY_THRESHOLD = 150;
+    const int HERBIVORE_REPRODUCTION_ENERGY_THRESHOLD = 160; 
     const int HERBIVORE_REPRODUCTION_COST = 70;              
     const int HERBIVORE_OFFSPRING_INITIAL_ENERGY = 80;       
-    const int HERBIVORE_REPRODUCTION_CHANCE_PERCENT = 25;    
+    const int HERBIVORE_REPRODUCTION_CHANCE_PERCENT = 20;
+
+    const int HERBIVORE_SIGHT_RADIUS = 4; 
+    const int HERBIVORE_CRITICAL_ENERGY_THRESHOLD = 60;
 }
 
 class HerbivoreFish : public Entity {
@@ -29,7 +32,7 @@ private:
     int energy_;
     int age_;
 
-    void move(Ocean& ocean, int current_r, int current_c);
-    bool eat(Ocean& ocean, int current_r, int current_c);
-    void reproduce(Ocean& ocean, int current_r, int current_c);
+    bool tryToEat(Ocean& ocean, int current_r, int current_c);
+    bool tryToReproduce(Ocean& ocean, int current_r, int current_c);
+    void intelligentMove(Ocean& ocean, int current_r, int current_c);
 };
