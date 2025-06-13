@@ -164,7 +164,8 @@ public:
         if (pge_ocean_) {
             for (int r = 0; r < pge_ocean_->getRows(); ++r) {
                 for (int c = 0; c < pge_ocean_->getCols(); ++c) {
-                    olc::Sprite* spriteToDraw = sprSand.get();
+                    DrawSprite(c * SPRITE_SIZE, r * SPRITE_SIZE, sprSand.get());
+                    olc::Sprite* spriteToDraw = nullptr;
                     Entity* entity = nullptr;
                     try {
                         entity = pge_ocean_->getEntity(r, c);
