@@ -13,4 +13,4 @@ add_executable(OceanSimulation
     src/utils/logger.cpp
 )
 
-target_include_directories(OceanSimulation PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)
+target_include_directories(OceanSimulation PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
