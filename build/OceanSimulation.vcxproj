@@ -337,6 +337,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="C:\Users\user\Desktop\ocean\ocean-project\src\herbivore.cpp" />
     <ClCompile Include="C:\Users\user\Desktop\ocean\ocean-project\src\predator.cpp" />
     <ClCompile Include="C:\Users\user\Desktop\ocean\ocean-project\src\ocean.cpp" />
+    <ClCompile Include="C:\Users\user\Desktop\ocean\ocean-project\src\utils\logger.cpp" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

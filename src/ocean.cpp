@@ -1,15 +1,17 @@
 #include "ocean.hpp"
-#include <iostream>
-#include <stdexcept>
-#include <utility>
+#include "utils/logger.hpp"
+#include <iostream> 
+#include <stdexcept> 
+#include <utility> 
 
 Ocean::Ocean(int rows, int cols) : rows_(rows), cols_(cols) {
     if (rows <= 0 || cols <= 0) {
+        Logger::error("Ocean dimensions must be positive. Requested: ", rows, "x", cols);
         throw std::invalid_argument("Ocean dimensions must be positive.");
     }
-    grid_.resize(rows_);
+    grid_.resize(rows_); 
     for (int i = 0; i < rows_; ++i) {
-        grid_[i].resize(cols_);
+        grid_[i].resize(cols_); 
     }
 }
 
@@ -18,50 +20,64 @@ bool Ocean::isValidCoordinate(int r, int c) const {
 }
 
 bool Ocean::addEntity(std::unique_ptr<Entity> entity, int r, int c) {
+    if (!entity) {
+        Logger::warn("Attempted to add a null entity to (", r, ",", c, ").");
+        return false;
+    }
     if (!isValidCoordinate(r, c)) {
-        std::cerr << "Error: Cannot add entity outside ocean bounds (" << r << "," << c << ")." << "\n";
+        Logger::warn("Cannot add entity: coordinates (", r, ",", c, ") are outside ocean bounds (", rows_, "x", cols_, "). Entity type: ", static_cast<int>(entity->getType()));
         return false; 
     }
-    if (grid_[r][c]) {
-        std::cerr << "Error: Cell (" << r << "," << c << ") is already occupied." << "\n";
+    if (grid_[r][c]) { 
+        Logger::debug("Cannot add entity: cell (", r, ",", c, ") is already occupied by type ", static_cast<int>(grid_[r][c]->getType()), ". Requested type: ", static_cast<int>(entity->getType()));
         return false; 
     }
-    grid_[r][c] = std::move(entity);
+    Logger::debug("Adding entity type ", static_cast<int>(entity->getType()), " to (", r, ",", c, ")");
+    grid_[r][c] = std::move(entity); 
     return true;
 }
 
 Entity* Ocean::getEntity(int r, int c) const {
     if (!isValidCoordinate(r, c)) {
-        return nullptr;
+        return nullptr; 
     }
-    return grid_[r][c].get();
+    return grid_[r][c].get(); 
 }
 
 std::unique_ptr<Entity> Ocean::removeEntity(int r, int c) {
-    if (!isValidCoordinate(r, c) || !grid_[r][c]) {
-        return nullptr;
+    if (!isValidCoordinate(r, c)) {
+        Logger::warn("Cannot remove entity: coordinates (", r, ",", c, ") are outside ocean bounds.");
+        return nullptr; 
     }
+    if (!grid_[r][c]) {
+        Logger::debug("Cannot remove entity: cell (", r, ",", c, ") is already empty.");
+        return nullptr; 
+    }
+    Logger::debug("Removing entity type ", static_cast<int>(grid_[r][c]->getType()), " from (", r, ",", c, ")");
     return std::move(grid_[r][c]); 
 }
 
 bool Ocean::moveEntity(int r_from, int c_from, int r_to, int c_to) {
     if (!isValidCoordinate(r_from, c_from) || !isValidCoordinate(r_to, c_to)) {
-        std::cerr << "Error: Invalid coordinates for move operation." << "\n";
+        Logger::warn("Invalid coordinates for move operation. From (", r_from, ",", c_from, ") to (", r_to, ",", c_to, ").");
         return false;
     }
     if (!grid_[r_from][c_from]) {
-        std::cerr << "Error: No entity at source location (" << r_from << "," << c_from << ") to move." << "\n";
+        Logger::warn("No entity at source location (", r_from, ",", c_from, ") to move.");
         return false;
     }
+    if (r_from == r_to && c_from == c_to) {
+        Logger::debug("Attempt to move entity to its current location (", r_from, ",", c_from, "). No action taken.");
+        return true; 
+    }
     if (grid_[r_to][c_to]) {
-         std::cerr << "Error: Destination cell (" << r_to << "," << c_to << ") is occupied." << "\n";
+        Logger::debug("Destination cell (", r_to, ",", c_to, ") for move is occupied by type ", static_cast<int>(grid_[r_to][c_to]->getType()), ". Source type: ", static_cast<int>(grid_[r_from][c_from]->getType()));
         return false; 
     }
-
-    grid_[r_to][c_to] = std::move(grid_[r_from][c_from]);
+    Logger::debug("Moving entity type ", static_cast<int>(grid_[r_from][c_from]->getType()), " from (", r_from, ",", c_from, ") to (", r_to, ",", c_to, ")");
+    grid_[r_to][c_to] = std::move(grid_[r_from][c_from]); 
     return true;
 }
-
 
 int Ocean::getRows() const {
     return rows_;
@@ -77,12 +93,12 @@ void Ocean::display() const {
             if (grid_[r][c]) {
                 std::cout << grid_[r][c]->getSymbol() << " ";
             } else {
-                std::cout << ". ";
+                std::cout << ". "; 
             }
         }
-        std::cout << "\n";
+        std::cout << std::endl;
     }
-    std::cout << "\n"; 
+    std::cout << std::endl; 
 }
 
 void Ocean::tick() {
@@ -94,29 +110,35 @@ void Ocean::tick() {
             }
         }
     }
+    Logger::debug("Found ", entities_to_update.size(), " entities to update this tick.");
 
     Random::shuffle(entities_to_update);
-
-
-    std::vector<std::pair<int,int>> dead_entities_coords; 
 
     for (const auto& pos : entities_to_update) {
         int r = pos.first;
         int c = pos.second;
         
         if (grid_[r][c]) { 
+            Logger::debug("Updating entity at (", r, ",", c, ") of type ", static_cast<int>(grid_[r][c]->getType()));
             grid_[r][c]->update(*this, r, c); 
         }
     } 
 
-    for (int r = 0; r < rows_; ++r) {
-        for (int c = 0; c < cols_; ++c) {
-            if (grid_[r][c]) {
-                if (grid_[r][c]->isDead()) { 
-                    removeEntity(r, c);
+    Logger::debug("Starting dead entity removal phase.");
+    int removed_count = 0;
+    for (int r_scan = 0; r_scan < rows_; ++r_scan) {
+        for (int c_scan = 0; c_scan < cols_; ++c_scan) {
+            if (grid_[r_scan][c_scan]) {
+                if (grid_[r_scan][c_scan]->isDead()) { 
+                    Logger::info("Removing dead entity of type ", static_cast<int>(grid_[r_scan][c_scan]->getType()), " at (", r_scan, ",", c_scan, ")");
+                    removeEntity(r_scan, c_scan); 
+                    removed_count++;
                 }
             }
         }
+    }
+    if (removed_count > 0) {
+       Logger::debug("Removed ", removed_count, " dead entities this tick.");
     }
 }
 
@@ -129,7 +151,7 @@ std::vector<std::pair<int, int>> Ocean::getEmptyAdjacentCells(int r, int c) cons
         int nr = r + dr[i];
         int nc = c + dc[i];
 
-        if (isValidCoordinate(nr, nc) && !grid_[nr][nc]) {
+        if (isValidCoordinate(nr, nc) && !grid_[nr][nc]) { 
             emptyCells.push_back({nr, nc});
         }
     }

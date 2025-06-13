@@ -1,6 +1,7 @@
 #include "predator.hpp"
 #include "ocean.hpp"
 #include "herbivore.hpp" 
+#include "utils/logger.hpp"
 #include <iostream>
 #include <vector>
 #include <utility>
@@ -10,13 +11,16 @@ PredatorFish::PredatorFish(int initial_energy)
     if (energy_ > Config::PREDATOR_MAX_ENERGY) {
         energy_ = Config::PREDATOR_MAX_ENERGY;
     }
+    Logger::debug("PredatorFish created. Energy: ", energy_);
 }
 
 bool PredatorFish::isDead() const {
     if (energy_ <= 0) {
+        Logger::info("Predator died from hunger. Age: ", age_, ", Energy: ", energy_);
         return true;
     }
     if (age_ >= Config::PREDATOR_MAX_AGE) {
+        Logger::info("Predator died from old age. Age: ", age_, ", Energy: ", energy_);
         return true;
     }
     return false;
@@ -35,12 +39,17 @@ void PredatorFish::reproduce(Ocean& ocean, int current_r, int current_c) {
             
             if (ocean.addEntity(std::move(offspring), offspringPos.first, offspringPos.second)) {
                 energy_ -= Config::PREDATOR_REPRODUCTION_COST;
+                Logger::info("Predator at (", current_r, ",", current_c, ") reproduced to (", 
+                           offspringPos.first, ",", offspringPos.second, "). Parent energy now: ", energy_);
             }
+        } else {
+            Logger::debug("Predator at (", current_r, ",", current_c, ") wanted to reproduce, but no empty space.");
         }
     }
 }
 
 void PredatorFish::update(Ocean& ocean, int r, int c) {
+    Logger::debug("Predator at (", r, ",", c, ") updating. Age: ", age_ + 1, ", Energy: ", energy_ - Config::PREDATOR_ENERGY_PER_TICK);
     age_++;
     energy_ -= Config::PREDATOR_ENERGY_PER_TICK;
 
@@ -79,8 +88,16 @@ bool PredatorFish::eat(Ocean& ocean, int current_r, int current_c) {
             }
 
             ocean.moveEntity(current_r, current_c, herbivorePos.first, herbivorePos.second);
+            Logger::info("Predator at (", herbivorePos.first, ",", herbivorePos.second, 
+                          ") ate a Herbivore. New energy: ", energy_);
             return true;
+        } else if (eatenHerbivore) {
+            Logger::warn("Predator at (", current_r, ",", current_c, ") tried to eat non-herbivore at (",
+                         herbivorePos.first, ",", herbivorePos.second, ")! Type: ", static_cast<int>(eatenHerbivore->getType()));
+            ocean.addEntity(std::move(eatenHerbivore), herbivorePos.first, herbivorePos.second); // Вернуть обратно
         }
+    } else {
+        Logger::debug("Predator at (", current_r, ",", current_c, ") found no Herbivores to eat.");
     }
     return false;
 }
@@ -92,7 +109,10 @@ void PredatorFish::move(Ocean& ocean, int current_r, int current_c) {
         Random::shuffle(emptyNeighbors);
         std::pair<int, int> targetCell = emptyNeighbors[0];
         
+        Logger::debug("Predator at (", current_r, ",", current_c, ") moving to (", targetCell.first, ",", targetCell.second,")");
         ocean.moveEntity(current_r, current_c, targetCell.first, targetCell.second);
+    } else {
+        Logger::debug("Predator at (", current_r, ",", current_c, ") has nowhere to move.");
     }
 }
 

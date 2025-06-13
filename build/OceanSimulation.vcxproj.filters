@@ -16,6 +16,9 @@
     <ClCompile Include="C:\Users\user\Desktop\ocean\ocean-project\src\ocean.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\Users\user\Desktop\ocean\ocean-project\src\utils\logger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="C:\Users\user\Desktop\ocean\ocean-project\CMakeLists.txt" />
